@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sebastian Müller</title>
+    <link>http://nodejh.com/</link>
+    <description>Recent content on Sebastian Müller</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 25 Feb 2017 12:36:54 +0100</lastBuildDate>
+    
+	<atom:link href="http://nodejh.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Device independent AdBlock with Pi-Hole</title>
+      <link>http://nodejh.com/post/pihole/</link>
+      <pubDate>Sat, 25 Feb 2017 12:36:54 +0100</pubDate>
+      
+      <guid>http://nodejh.com/post/pihole/</guid>
+      <description>Ads are annoying. Not only when trying to read morning news and more than half of the website is spammed with moving gifs (or flash ads, the worst kind of ads), but also they are able to spy on you and track you browsing behaviour.
+Of course, most people are using browser extensions like Adblock Plus or (my favorite) uBlock Origin. But what about your devices that do not support extensions?</description>
+    </item>
+    
+  </channel>
+</rss>
