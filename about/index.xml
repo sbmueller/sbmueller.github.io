@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>About on Sebastian Müller</title>
-    <link>http://nodejh.com/about/</link>
+    <link>https://sbmueller.github.io/about/</link>
     <description>Recent content in About on Sebastian Müller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 02 Sep 2017 14:02:37 +0200</lastBuildDate>
     
-	<atom:link href="http://nodejh.com/about/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sbmueller.github.io/about/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
