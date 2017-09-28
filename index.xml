@@ -17,7 +17,7 @@
       <pubDate>Thu, 28 Sep 2017 14:31:13 +0200</pubDate>
       
       <guid>https://sbmueller.github.io/post/pgp/</guid>
-      <description>I have nothing to hide anyway This is what I often hear when I talk to people about encrypted communication. Generally, the complexity of communicating securely is extremely overrated, and people seem to avoid going through the supposed hassle because they don&amp;rsquo;t exchange sensitive data over the internet.
+      <description>This is what I often hear when I talk to people about encrypted communication. Generally, the complexity of communicating securely is extremely overrated, and people seem to avoid going through the supposed hassle because they don&amp;rsquo;t exchange sensitive data over the internet.
 With this article, I want to arise awareness of secure communication, and in particular of PGP. Generally speaking, in cryptography the strenght of an encryption is directly proportional with the mean time an attacker would need to crack the cipher.</description>
     </item>
     
