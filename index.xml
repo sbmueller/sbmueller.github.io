@@ -6,10 +6,20 @@
     <description>Recent content on Sebastian Müller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 28 Sep 2017 14:31:13 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 22 Oct 2017 14:41:56 +0200</lastBuildDate>
     
 	<atom:link href="https://sbmueller.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Building GNU Radio on macOS</title>
+      <link>https://sbmueller.github.io/post/gnuradio-mac/</link>
+      <pubDate>Sun, 22 Oct 2017 14:41:56 +0200</pubDate>
+      
+      <guid>https://sbmueller.github.io/post/gnuradio-mac/</guid>
+      <description>Since this topic has been around for some time, I want to share my experience on how to successfully compile GNU Radio on macOS.
+Prequisities  macOS 10.13 MacPorts in /opt/local Other GNU Radio installation via sudo port install gnuradio  Why build from souce? This is a simple question. If you just want to use GNU Radio, go ahead and install via MacPorts or Homebrew. The tricky part is to actually develop for GNU Radio without the possibility of a source build.</description>
+    </item>
     
     <item>
       <title>I have nothing to hide anyway</title>
