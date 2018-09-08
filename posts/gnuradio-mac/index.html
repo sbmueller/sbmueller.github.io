@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		
-		<meta name="description" content="Wireless Communications Engineer">
+		<meta name="description" content="I&#39;m an engineer.">
 		<meta name="generator" content="Hugo 0.42.2" />
 		<title>Building GNU Radio on macOS &middot; Sebastian Müller</title>
 		<link rel="shortcut icon" href="https://sbmueller.github.io/images/favicon.ico">
@@ -82,7 +82,7 @@ touching the global GNU Radio installation or braking anything.</p>
 
 <h2 id="tutorial">Tutorial</h2>
 
-<h4 id="1-get-your-python-installation-straight">1. Get your Python installation straight</h4>
+<h3 id="1-get-your-python-installation-straight">1. Get your Python installation straight</h3>
 
 <p>There is an issue around with PyBOMBS, which generally causes the problem that
 Python dependencies don&rsquo;t get installed for the default interpreter, but for
@@ -115,7 +115,7 @@ dependencies should be installed by PyBOMBS. For this, open your
 
 <p>With this, UHD should succeed to build.</p>
 
-<h4 id="2-make-cmake-find-qt4">2. Make CMake find Qt4</h4>
+<h3 id="2-make-cmake-find-qt4">2. Make CMake find Qt4</h3>
 
 <p>When trying to configure GNU Radio, most likely Qt4 won&rsquo;t be found. This is due
 to a MacPorts <a href="https://trac.macports.org/ticket/49629">issue</a> where <code>qmake</code> is
@@ -127,7 +127,7 @@ your Qt4 installation to <code>/opt/local/bin</code> by this command</p>
 
 <p>After this, CMake should find Qt4 and configure correctly.</p>
 
-<h4 id="3-fix-linking-against-libgsl">3. Fix linking against libgsl</h4>
+<h3 id="3-fix-linking-against-libgsl">3. Fix linking against libgsl</h3>
 
 <p>When trying to build now, changes are high that linking will fail with <code>ld:
 library not found for -lgsl</code>. I&rsquo;m not 100% sure why this is happening, but most
@@ -135,7 +135,7 @@ likely clang behaves differntly than gcc here. A fix for this has been proposed
 in <a href="https://github.com/gnuradio/gnuradio/pull/1490">#1490</a>. With this commit,
 linking should succeed.</p>
 
-<h4 id="4-make-cmake-use-correct-python-paths">4. Make CMake use correct Python paths</h4>
+<h3 id="4-make-cmake-use-correct-python-paths">4. Make CMake use correct Python paths</h3>
 
 <p>This is the point where you have to <code>cd [prefix]/src/gnuradio/build</code> and invoke
 <code>cmake</code> by hand, because some directories need to be passed manually. I guess
@@ -144,7 +144,7 @@ default, &hellip;), CMake gets mixed up and tries to spawn a thread in the wrong
 interpreter, when <code>gnuradio-companion</code> is launched. To fix this, use the
 <code>cmake</code> command like this and <em>replace [pybombs prefix] with your prefix</em>.</p>
 
-<pre><code>`cmake .. -DCMAKE_INSTALL_PREFIX=[pybombs prefix]
+<pre><code>cmake .. -DCMAKE_INSTALL_PREFIX=[pybombs prefix]
 -DPYTHON_EXECUTABLE=/opt/local/bin/python2.7
 -DPYTHON_INCLUDE_DIR=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/Headers
 -DPYTHON_LIBRARY=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/Python
@@ -172,6 +172,10 @@ install with</p>
 
 	
 	
+    <a class="symbol" href="https://keybase.io/sbmueller">
+        <i class="fa fa-envelope-square"></i>
+    </a>
+    
     <a class="symbol" href="https://github.com/sbmueller">
         <i class="fa fa-github-square"></i>
     </a>
@@ -191,7 +195,7 @@ install with</p>
     
     <p class="small">
     
-       © Copyright 2018 <i class="fa fa-heart" aria-hidden="true"></i> 
+        &copy; 2018 Sebastian Müller
     
     </p>
     <p class="small">
