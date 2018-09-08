@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		
+		<meta name="description" content="Wireless Communications Engineer">
+		<meta name="generator" content="Hugo 0.42.2" />
+		<title>Building GNU Radio on macOS &middot; Sebastian Müller</title>
+		<link rel="shortcut icon" href="https://sbmueller.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="https://sbmueller.github.io/css/style.css">
+		<link rel="stylesheet" href="https://sbmueller.github.io/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="https://sbmueller.github.io/css/font-awesome.min.css">
+		
+
+		
+
+		
+		
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton%7cPT&#43;Sans" type="text/css" media="all" />
+                
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='https://sbmueller.github.io/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='https://sbmueller.github.io/posts'>Archive</a>
+	<a href='https://sbmueller.github.io/tags'>Tags</a>
+	<a href='https://sbmueller.github.io/about'>About</a>
+
+	
+
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        Building GNU Radio on macOS
+                    </h1>
+                    <h2 class="headline">
+                    Oct 22, 2017 14:41
+                    · 485 words
+                    · 3 minute read
+                      <span class="tags">
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                <section id="post-body">
+                    
+
+<p>Since this topic has been around for some time, I want to share my experience on how to successfully compile GNU Radio on macOS.</p>
+
+<h2 id="prequisities">Prequisities</h2>
+
+<ul>
+<li>macOS 10.13</li>
+<li>MacPorts in <code>/opt/local</code></li>
+<li>Other GNU Radio installation via <code>sudo port install gnuradio</code></li>
+</ul>
+
+<h2 id="why-build-from-souce">Why build from souce?</h2>
+
+<p>This is a simple question. If you just want to use GNU Radio, go ahead and
+install via MacPorts or Homebrew. The tricky part is to actually develop for
+GNU Radio without the possibility of a source build.
+<a href="https://github.com/gnuradio/pybombs">PyBOMBS</a> is a great tool for developers
+in order to install several GNU Radio environments simultaneously in different
+prefixes. From there, different features/bugfixes can be implemented without
+touching the global GNU Radio installation or braking anything.</p>
+
+<h2 id="tutorial">Tutorial</h2>
+
+<h4 id="1-get-your-python-installation-straight">1. Get your Python installation straight</h4>
+
+<p>There is an issue around with PyBOMBS, which generally causes the problem that
+Python dependencies don&rsquo;t get installed for the default interpreter, but for
+the Python version specified in the recipes
+(<a href="(https://github.com/gnuradio/pybombs/issues/423)">#423</a>). If your default
+interpeter is Python 2.7, there shouldn&rsquo;t be a problem. If another version is
+set up, UHD most likely will fail to configure and you have to install all
+dependencies by hand using the correct Python version. Find out your default
+interpreter by</p>
+
+<pre><code>python --version
+</code></pre>
+
+<p>For me it&rsquo;s <code>3.5.2</code>, so I could use MacPorts to install dependencies like this</p>
+
+<pre><code>sudo macports install py35-mako
+</code></pre>
+
+<p>Another method is to force CMake to use your 2.7 interpreter, where
+dependencies should be installed by PyBOMBS. For this, open your
+<code>[prefix]/src/uhd/host/cmake/Modules/UHDPython.cmake</code> and change line 35 from</p>
+
+<pre><code>FIND_PACKAGE(PythonInterp)
+</code></pre>
+
+<p>to</p>
+
+<pre><code>FIND_PACKAGE(PythonInterp 2.7 REQUIRED)
+</code></pre>
+
+<p>With this, UHD should succeed to build.</p>
+
+<h4 id="2-make-cmake-find-qt4">2. Make CMake find Qt4</h4>
+
+<p>When trying to configure GNU Radio, most likely Qt4 won&rsquo;t be found. This is due
+to a MacPorts <a href="https://trac.macports.org/ticket/49629">issue</a> where <code>qmake</code> is
+not installed in any <code>$PATH</code>. An easy workaround is to symlink <code>qmake</code> from
+your Qt4 installation to <code>/opt/local/bin</code> by this command</p>
+
+<pre><code>sudo ln -s /opt/local/libexec/qt4/bin/qmake /opt/local/bin/qmake
+</code></pre>
+
+<p>After this, CMake should find Qt4 and configure correctly.</p>
+
+<h4 id="3-fix-linking-against-libgsl">3. Fix linking against libgsl</h4>
+
+<p>When trying to build now, changes are high that linking will fail with <code>ld:
+library not found for -lgsl</code>. I&rsquo;m not 100% sure why this is happening, but most
+likely clang behaves differntly than gcc here. A fix for this has been proposed
+in <a href="https://github.com/gnuradio/gnuradio/pull/1490">#1490</a>. With this commit,
+linking should succeed.</p>
+
+<h4 id="4-make-cmake-use-correct-python-paths">4. Make CMake use correct Python paths</h4>
+
+<p>This is the point where you have to <code>cd [prefix]/src/gnuradio/build</code> and invoke
+<code>cmake</code> by hand, because some directories need to be passed manually. I guess
+since there are several Python installations on macOS (MacPorts, system
+default, &hellip;), CMake gets mixed up and tries to spawn a thread in the wrong
+interpreter, when <code>gnuradio-companion</code> is launched. To fix this, use the
+<code>cmake</code> command like this and <em>replace [pybombs prefix] with your prefix</em>.</p>
+
+<pre><code>`cmake .. -DCMAKE_INSTALL_PREFIX=[pybombs prefix]
+-DPYTHON_EXECUTABLE=/opt/local/bin/python2.7
+-DPYTHON_INCLUDE_DIR=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/Headers
+-DPYTHON_LIBRARY=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/Python
+-DSPHINX_EXECUTABLE=/opt/local/bin/rst2html-2.7.py
+</code></pre>
+
+<p>With this invokation, paths should be set up correctly. Go ahead and build &amp;&amp;
+install with</p>
+
+<pre><code>make &amp;&amp; make install
+</code></pre>
+
+                </section>
+            </article>
+
+            
+
+            
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="https://github.com/sbmueller">
+        <i class="fa fa-github-square"></i>
+    </a>
+    
+    <a class="symbol" href="https://www.linkedin.com/in/sbmueller/">
+        <i class="fa fa-linkedin-square"></i>
+    </a>
+    
+    <a class="symbol" href="https://twitter.com/sbmuellr">
+        <i class="fa fa-twitter-square"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2018 <i class="fa fa-heart" aria-hidden="true"></i> 
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://sbmueller.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://sbmueller.github.io/js/main.js"></script>
+<script src="https://sbmueller.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+  
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-105838069-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+
+
+    </body>
+</html>

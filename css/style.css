@@ -116,7 +116,7 @@ html, body {
 }
 
 body {
-    font: 18px/1 "PT Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 20px/1 "PT Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #666;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -157,7 +157,7 @@ h2 {
 .profile h1 {
     font-weight: 400;
     letter-spacing: 0px;
-    font-size: 20px;
+    font-size: 36px;
     font-family: 'Anton', sans-serif;
     color: #222;
 }
@@ -167,11 +167,12 @@ h2 {
     font-weight: 300;
     color: #aaa;
     margin-top: 10px;
-    font-family: 'Anton', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'PT Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-style: normal;
 }
 
 nav.main-nav {
+    font-family: 'PT Sans', sans-serif;
     padding: 20px 20px 0;
     background: #fff;
     background: rgba(255, 255, 255, .90);
@@ -181,6 +182,7 @@ nav.main-nav {
 }
 
 nav.main-nav a {
+    font-family: 'PT Sans', sans-serif;
     top: 8px;
     right: 6px;
     padding: 8px 12px;
@@ -227,7 +229,7 @@ nav.main-nav a.cta {
 }
 
 #wrapper.home {
-    max-width: 600px;
+    max-width: 960px;
     margin: 0 auto;
     padding: 0px 40px 20px 40px;
 }
@@ -317,15 +319,19 @@ em, i {
 }
 
 .home h1 {
-    font-size: 30px;
-    letter-spacing: -1px;
+    margin-top: 40px;
+    margin-bottom: 20px;
     color: #222;
-    font-weight: bold;
+    font: 300 48px/1.4em 'Anton', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: normal;
 }
 
 .home h2 {
-    font: italic 19px/1.3em Georgia, serif;
-    color: #bbb;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font: 300 32px/1.5 "Anton", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    color: #111;
 }
 
 .post header {
@@ -337,14 +343,14 @@ em, i {
     margin-bottom: 20px;
     color: #222;
     font: 300 48px/1.4em 'Anton', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .post h2 {
     margin-top: 20px;
     margin-bottom: 10px;
     font: 300 32px/1.5 "Anton", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: bold;
+    font-weight: normal;
     color: #111;
 }
 
@@ -515,6 +521,7 @@ Post List
 }
 
 #post-list-footer {
+    font-family: 'PT Sans', sans-serif;
     border-top: 1px solid #eee;
     margin-top: 20px;
     padding-top: 100px;
@@ -542,6 +549,7 @@ Post List
 }
 
 #footer {
+    font-family: 'PT Sans', sans-serif;
     margin-top: 100px;
 }
 
@@ -608,6 +616,7 @@ Post List
 /* Post Navigation */
 
 #post-nav {
+    font: 'Helvetica Neue', sans-serif;
     text-align: center;
     padding-top: 20px;
     font-size: 13px;
@@ -800,6 +809,7 @@ h2.month {
 }
 
 .archive .post-item {
+    font-family: 'PT Sans', sans-serif;
     padding: 10px 0px;
     overflow-x: hidden;
     white-space:nowrap;
@@ -921,6 +931,7 @@ a.symbol:hover {
     text-align: center;
 }
 .page-tags ul li {
+    font-family: 'PT Sans', sans-serif;
     margin: 10px 15px;
     display: inline-block;
     font-size: 1.2em;
