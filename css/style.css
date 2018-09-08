@@ -158,7 +158,7 @@ h2 {
     font-weight: 400;
     letter-spacing: 0px;
     font-size: 36px;
-    font-family: 'Anton', sans-serif;
+    font-family: 'Oswald', sans-serif;
     color: #222;
 }
 
@@ -322,14 +322,14 @@ em, i {
     margin-top: 40px;
     margin-bottom: 20px;
     color: #222;
-    font: 300 48px/1.4em 'Anton', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font: 300 48px/1.4em 'Oswald', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: normal;
 }
 
 .home h2 {
     margin-top: 20px;
     margin-bottom: 10px;
-    font: 300 32px/1.5 "Anton", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 300 32px/1.5 "Oswald", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
     color: #111;
 }
@@ -342,14 +342,14 @@ em, i {
     margin-top: 40px;
     margin-bottom: 20px;
     color: #222;
-    font: 300 48px/1.4em 'Anton', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: normal;
+    font: 300 48px/1.4em 'Oswald', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
 }
 
 .post h2 {
     margin-top: 20px;
     margin-bottom: 10px;
-    font: 300 32px/1.5 "Anton", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 300 32px/1.5 "Oswald", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
     color: #111;
 }
@@ -375,7 +375,7 @@ em, i {
 }
 
 #post-list h2 {
-    font: normal 24px/1.5em 'PT Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: normal 32px/1.5em 'PT Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #aaa;
     margin-top: 2px;
 }
@@ -385,7 +385,8 @@ h3, h4, h5 {
 }
 
 h3 {
-    font-size: 20px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 24px;
     font-weight: 400;
 }
 
@@ -805,7 +806,7 @@ h2.month {
 
 .archive {
     margin: 0 0 50px 0;
-    font-size: 16px;
+    font-size: 24px;
 }
 
 .archive .post-item {
@@ -934,7 +935,7 @@ a.symbol:hover {
     font-family: 'PT Sans', sans-serif;
     margin: 10px 15px;
     display: inline-block;
-    font-size: 1.2em;
+    font-size: 24px;
 }
 .page-tags ul li a {
     color: #8a8a8a;
