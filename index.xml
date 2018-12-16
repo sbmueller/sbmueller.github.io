@@ -6,10 +6,20 @@
     <description>Recent content on Sebastian Müller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 27 Oct 2018 13:12:36 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 16 Dec 2018 12:30:32 +0100</lastBuildDate>
     
 	<atom:link href="https://sbmueller.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How to report software issues</title>
+      <link>https://sbmueller.github.io/posts/issue_report/</link>
+      <pubDate>Sun, 16 Dec 2018 12:30:32 +0100</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/issue_report/</guid>
+      <description>TL;DR A good report of a software issue should look like this:
+ What is the initial position of your system? What operating system are you on? What versions of your OS and of the software under question were used? Is there any other software like previous versions that might affect behaviour? What exactly did you do? How did you install the software? Which dependencies did you install and how did you do it?</description>
+    </item>
     
     <item>
       <title>What I learned: Google Test</title>

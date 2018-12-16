@@ -6,9 +6,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		
-		<meta name="description" content="Wireless Communications Engineer">
-		<meta name="generator" content="Hugo 0.42.2" />
-		<title>I have nothing to hide anyway &middot; Sebastian Müller</title>
+		<meta name="description" content="I&#39;m an engineer.">
+		<meta name="generator" content="Hugo 0.51" />
+		<title>How to report software issues &middot; Sebastian Müller</title>
 		<link rel="shortcut icon" href="https://sbmueller.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://sbmueller.github.io/css/style.css">
 		<link rel="stylesheet" href="https://sbmueller.github.io/css/highlight.css">
@@ -21,7 +21,7 @@
 
 		
 		
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton%7cPT&#43;Sans" type="text/css" media="all" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald%7cPT&#43;Sans%7cPT&#43;Serif" type="text/css" media="all" />
                 
 	</head>
 
@@ -45,11 +45,11 @@
             <article>
                 <header>
                     <h1>
-                        I have nothing to hide anyway
+                        How to report software issues
                     </h1>
                     <h2 class="headline">
-                    Sep 28, 2017 14:31
-                    · 288 words
+                    Dec 16, 2018 12:30
+                    · 309 words
                     · 2 minute read
                       <span class="tags">
                       
@@ -60,39 +60,45 @@
                 <section id="post-body">
                     
 
-<p>This is what I often hear when I talk to people about encrypted communication.
-Generally, the complexity of communicating securely is extremely overrated, and
-people seem to avoid going through the supposed hassle because they don&rsquo;t
-exchange sensitive data over the internet.</p>
+<h2 id="tl-dr">TL;DR</h2>
 
-<p>With this article, I want to arise awareness of secure communication, and in
-particular of PGP. Generally speaking, in cryptography the strenght of an
-encryption is directly proportional with the mean time an attacker would need
-to crack the cipher. This time should be <em>greater</em> than the timeframe in which
-the information could be valuable for an attacker. In most cases of everyday
-communication, people correctly assume their information is of <em>no</em> value for
-an attacker and therefore conclude that no encryption should be used. But there
-are two arguments against this logic: Firstly, encrypting is <em>easy</em>! With
-technology like PGP (which still requires one initial configuration), everybody
-can communicate securely. Second, it&rsquo;s <em>free</em>. Nobody charges you for
-encryption technology since most of it is developed in a free software context.
-Third, everybody should protest governmental surveillance and increasing
-privacy penetration.</p>
+<p>A good report of a software issue should look like this:</p>
 
-<h2 id="pg-what-pretty-good-privacy-pgp-is-a-very-proven-technology-to-encrypt">PG-What?  Pretty good privacy (PGP) is a very proven technology to encrypt</h2>
+<ul>
+<li>What is the initial position of your system? What operating system are you
+on? What versions of your OS and of the software under question were used? Is
+there any other software like previous versions that might affect behaviour?</li>
+<li>What exactly did you do? How did you install the software? Which dependencies
+did you install and how did you do it? How were you trying to use the
+software? Be specific! What commands did you execute? What files did you use?</li>
+<li>What did you expect to happen? Why did you think the former?</li>
+<li>What happened instead? Provide all output the software is providing.</li>
+</ul>
 
-<p>emails. It generally works with asynchronous encryption, making sure only the
-intended receipient of a message is able to decrypt the message. To enable
-this, every user of PGP publishes a <em>public</em> key which is used by the sender to
-encrypt a message. After that, the message can only be decrypted with the
-<em>private</em> key of the receipient, which is <em>NOT</em> publicly available. For more
-details, <a href="https://en.wikipedia.org/wiki/Pretty_Good_Privacy">Wikipedia</a> is a
-good resource.</p>
+<h2 id="why-is-this-important">Why is this important?</h2>
 
-<p>For further steps, there are good resources for <a href="https://gpgtools.org">Mac</a> and
-<a href="https://www.enigmail.net/index.php/en/">Mozilla Thunderbird</a>. And of course,
-my public key can be found
-<a href="http://pgp.mit.edu/pks/lookup?op=vindex&amp;search=0x9FFBD55DDC2AA3EE">here</a>.</p>
+<p>As a maintainer of <a href="https://github.com/gnuradio/gr-inspector">a software</a>, I
+sometimes receive issues reported by users. However, most users fail in their
+first attempt to provide a good issue report. A typical query I experience
+might look like this</p>
+
+<blockquote>
+<p>Dear Sir,</p>
+
+<p>I tried to use your software but it did not work. I did the commands in the
+readme, but there were errors. Please help!</p>
+</blockquote>
+
+<p>I think it should become pretty clear that this query does not give me any
+possibility to provide help. Try to put yourself in my place: How would you
+help this user? I need to reproduce the issue to understand what is going wrong
+and to fix it. In other words: I need the user&rsquo;s help to help them!</p>
+
+<p>With complex software and operating systems these days, there are a trillion
+things that could go wrong when trying to use a software. In order to provide
+help and narrow down the issue, users should provide as much information as
+possible. Please keep in mind the proposed structure at the beginning of this
+article if you happen to seek help on a software that you are trying to use.</p>
 
                 </section>
             </article>
@@ -109,6 +115,10 @@ my public key can be found
 
 	
 	
+    <a class="symbol" href="https://keybase.io/sbmueller">
+        <i class="fa fa-envelope-square"></i>
+    </a>
+    
     <a class="symbol" href="https://github.com/sbmueller">
         <i class="fa fa-github-square"></i>
     </a>
@@ -128,7 +138,7 @@ my public key can be found
     
     <p class="small">
     
-       © Copyright 2018 <i class="fa fa-heart" aria-hidden="true"></i> 
+        &copy; 2018 Sebastian Müller
     
     </p>
     <p class="small">
@@ -147,7 +157,7 @@ my public key can be found
 
 
   
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
