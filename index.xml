@@ -6,10 +6,19 @@
     <description>Recent content on Sebastian Müller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 16 Dec 2018 12:30:32 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 31 Dec 2018 11:26:57 +0100</lastBuildDate>
     
 	<atom:link href="https://sbmueller.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Living Sustainably</title>
+      <link>https://sbmueller.github.io/posts/living_sustainably/</link>
+      <pubDate>Mon, 31 Dec 2018 11:26:57 +0100</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/living_sustainably/</guid>
+      <description>Sustainability is a very important topic for me. However, I don&amp;rsquo;t have the impression that many people think a lot about a sustainable lifestyle and why it might be important. Year after year experts warn about the development which is taking place, but they don&amp;rsquo;t seem to get heard. I want to emphasize the importance of a basic awareness of what impact our lifestyle has on the planet and the future of humankind.</description>
+    </item>
     
     <item>
       <title>How to report software issues</title>

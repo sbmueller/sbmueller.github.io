@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://sbmueller.github.io/posts/living_sustainably/</loc>
+    <lastmod>2018-12-31T11:26:57+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://sbmueller.github.io/posts/issue_report/</loc>
     <lastmod>2018-12-16T12:30:32+01:00</lastmod>
   </url>
@@ -49,7 +54,7 @@
   
   <url>
     <loc>https://sbmueller.github.io/posts/</loc>
-    <lastmod>2018-12-16T12:30:32+01:00</lastmod>
+    <lastmod>2018-12-31T11:26:57+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -67,7 +72,7 @@
   
   <url>
     <loc>https://sbmueller.github.io/</loc>
-    <lastmod>2018-12-16T12:30:32+01:00</lastmod>
+    <lastmod>2018-12-31T11:26:57+01:00</lastmod>
     <priority>0</priority>
   </url>
   
