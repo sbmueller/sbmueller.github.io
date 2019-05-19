@@ -6,10 +6,20 @@
     <description>Recent content on Sebastian Müller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 31 Dec 2018 11:26:57 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 19 May 2019 16:20:37 +0100</lastBuildDate>
     
 	<atom:link href="https://sbmueller.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>My Terminal Setup</title>
+      <link>https://sbmueller.github.io/posts/terminal_setup/</link>
+      <pubDate>Sun, 19 May 2019 16:20:37 +0100</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/terminal_setup/</guid>
+      <description>On the Terminal Why is the terminal still something important in the year 2019 you might ask. There are GUI applications for literally any purpose, so why bother setting up a terminal environment where you have to enter complicated commands?
+It surely depends on the kind of work you are doing, but for most engineers and developers, a neat terminal setup provides some crucial benefits. First of all, this kind of workflow has to be embraced and is not for everyone.</description>
+    </item>
     
     <item>
       <title>Living Sustainably</title>
