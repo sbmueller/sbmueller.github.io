@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://sbmueller.github.io/about/</loc>
+    <lastmod>2019-05-26T09:02:37+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://sbmueller.github.io/posts/terminal_setup/</loc>
     <lastmod>2019-05-19T16:20:37+01:00</lastmod>
   </url>
@@ -40,11 +45,6 @@
   <url>
     <loc>https://sbmueller.github.io/posts/pgp/</loc>
     <lastmod>2017-09-28T14:31:13+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://sbmueller.github.io/about/</loc>
-    <lastmod>2017-09-02T14:02:37+02:00</lastmod>
   </url>
   
   <url>
