@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Sebastian Müller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 19 May 2019 16:20:37 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 15 Jun 2019 21:20:28 +0200</lastBuildDate>
     
 	<atom:link href="https://sbmueller.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A Digital Doorbell in 10 Minutes</title>
+      <link>https://sbmueller.github.io/posts/iot_bell/</link>
+      <pubDate>Sat, 15 Jun 2019 21:20:28 +0200</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/iot_bell/</guid>
+      <description>Today I discovered that my doorbell is broken. Since I&amp;rsquo;m awaiting some deliveries, I figured I need a hotfix until my landlord repairs the analog doorbell. It took me only 10 minutes to implement a digital solution.
+Concept I immediately thought of IFTTT, an online service that acts as hub between several IoT devices or internet services. The scheme is always the same:
+ If this happens, then do that.</description>
+    </item>
     
     <item>
       <title>My Terminal Setup</title>
