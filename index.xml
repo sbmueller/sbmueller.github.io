@@ -6,10 +6,20 @@
     <description>Recent content on Sebastian Müller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 15 Jun 2019 21:20:28 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 30 Jun 2019 13:52:11 +0200</lastBuildDate>
     
 	<atom:link href="https://sbmueller.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>What I learned: Pandoc</title>
+      <link>https://sbmueller.github.io/posts/pandoc/</link>
+      <pubDate>Sun, 30 Jun 2019 13:52:11 +0200</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/pandoc/</guid>
+      <description>I love using LaTeX for creating documents and slides. I chose it over alternatives like Word (because IMO Word behaves inconsistenly and I take much longer to fiddle with the options to get a nice document) or reveal.js (because of it&amp;rsquo;s complex file structure and I don&amp;rsquo;t get along with node).
+The only problem with LaTex is that it&amp;rsquo;s pretty outdated and the language itself is filled with redundancy. My friend Ben Hilburn wrote a blog post about this as well.</description>
+    </item>
     
     <item>
       <title>A Digital Doorbell in 10 Minutes</title>
