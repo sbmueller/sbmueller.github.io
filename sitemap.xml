@@ -15,13 +15,31 @@
   </url>
   
   <url>
+    <loc>https://sbmueller.github.io/tags/</loc>
+    <lastmod>2019-06-30T13:52:11+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://sbmueller.github.io/posts/pandoc/</loc>
     <lastmod>2019-06-30T13:52:11+02:00</lastmod>
   </url>
   
   <url>
+    <loc>https://sbmueller.github.io/tags/whatilearned/</loc>
+    <lastmod>2019-06-30T13:52:11+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://sbmueller.github.io/posts/iot_bell/</loc>
     <lastmod>2019-06-15T21:20:28+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sbmueller.github.io/tags/hacking/</loc>
+    <lastmod>2019-06-15T21:20:28+02:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -37,6 +55,12 @@
   <url>
     <loc>https://sbmueller.github.io/posts/living_sustainably/</loc>
     <lastmod>2018-12-31T11:26:57+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sbmueller.github.io/tags/opinion/</loc>
+    <lastmod>2018-12-31T11:26:57+01:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -72,24 +96,6 @@
   <url>
     <loc>https://sbmueller.github.io/posts/pihole/</loc>
     <lastmod>2017-02-25T12:36:54+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://sbmueller.github.io/tags/</loc>
-    <lastmod>2017-02-25T12:36:54+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://sbmueller.github.io/tags/privacy/</loc>
-    <lastmod>2017-02-25T12:36:54+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://sbmueller.github.io/tags/rpi/</loc>
-    <lastmod>2017-02-25T12:36:54+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

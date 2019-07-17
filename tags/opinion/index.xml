@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>opinion on Sebastian Müller</title>
+    <link>https://sbmueller.github.io/tags/opinion/</link>
+    <description>Recent content in opinion on Sebastian Müller</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 31 Dec 2018 11:26:57 +0100</lastBuildDate>
+    
+	<atom:link href="https://sbmueller.github.io/tags/opinion/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Living Sustainably</title>
+      <link>https://sbmueller.github.io/posts/living_sustainably/</link>
+      <pubDate>Mon, 31 Dec 2018 11:26:57 +0100</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/living_sustainably/</guid>
+      <description>Sustainability is a very important topic for me. However, I don&amp;rsquo;t have the impression that many people think a lot about a sustainable lifestyle and why it might be important. Year after year experts warn about the development which is taking place, but they don&amp;rsquo;t seem to get heard. I want to emphasize the importance of a basic awareness of what impact our lifestyle has on the planet and the future of humankind.</description>
+    </item>
+    
+    <item>
+      <title>How to report software issues</title>
+      <link>https://sbmueller.github.io/posts/issue_report/</link>
+      <pubDate>Sun, 16 Dec 2018 12:30:32 +0100</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/issue_report/</guid>
+      <description>TL;DR A good report of a software issue should look like this:
+ What is the initial position of your system? What operating system are you on? What versions of your OS and of the software under question were used? Is there any other software like previous versions that might affect behaviour? What exactly did you do? How did you install the software? Which dependencies did you install and how did you do it?</description>
+    </item>
+    
+    <item>
+      <title>Germany - a digital third world country</title>
+      <link>https://sbmueller.github.io/posts/germany_third_world/</link>
+      <pubDate>Sat, 08 Sep 2018 13:56:07 +0200</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/germany_third_world/</guid>
+      <description>I have lived in Germany all my life. It is a great country, offering superior healthcare, social services, wealth, high living standards, you name it. However, there is one domain where Germany is behind, which is digitalization.
+Germany is known for it&amp;rsquo;s high tech industry and while we are vastly exporting high tech goods, we decline to establish the same in our own society. I don&amp;rsquo;t know the reasons for this, but I want to share my observations and thoughts about this topic.</description>
+    </item>
+    
+    <item>
+      <title>The Future of Mobility</title>
+      <link>https://sbmueller.github.io/posts/future_of_mobility/</link>
+      <pubDate>Wed, 29 Aug 2018 11:51:23 +0200</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/future_of_mobility/</guid>
+      <description>In this post, I want to share my thoughts on mobility. I&amp;rsquo;ve now been working for a big automotive supplier for almost one year and have put many thoughts on what&amp;rsquo;s the current status of how we move people and things and how this can be improved in the future. This is a not-so-nerdy post, but as well a topic that really bothers me.
+Autonomous Cars It&amp;rsquo;s everywhere in the news.</description>
+    </item>
+    
+    <item>
+      <title>I have nothing to hide anyway</title>
+      <link>https://sbmueller.github.io/posts/pgp/</link>
+      <pubDate>Thu, 28 Sep 2017 14:31:13 +0200</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/pgp/</guid>
+      <description>This is what I often hear when I talk to people about encrypted communication. Generally, the complexity of communicating securely is extremely overrated, and people seem to avoid going through the supposed hassle because they don&amp;rsquo;t exchange sensitive data over the internet.
+With this article, I want to arise awareness of secure communication, and in particular of PGP. Generally speaking, in cryptography the strenght of an encryption is directly proportional with the mean time an attacker would need to crack the cipher.</description>
+    </item>
+    
+  </channel>
+</rss>

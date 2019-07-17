@@ -6,26 +6,35 @@
     <description>Recent content in Tags on Sebastian Müller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 25 Feb 2017 12:36:54 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 30 Jun 2019 13:52:11 +0200</lastBuildDate>
     
 	<atom:link href="https://sbmueller.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>privacy</title>
-      <link>https://sbmueller.github.io/tags/privacy/</link>
-      <pubDate>Sat, 25 Feb 2017 12:36:54 +0100</pubDate>
+      <title>whatilearned</title>
+      <link>https://sbmueller.github.io/tags/whatilearned/</link>
+      <pubDate>Sun, 30 Jun 2019 13:52:11 +0200</pubDate>
       
-      <guid>https://sbmueller.github.io/tags/privacy/</guid>
+      <guid>https://sbmueller.github.io/tags/whatilearned/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>rpi</title>
-      <link>https://sbmueller.github.io/tags/rpi/</link>
-      <pubDate>Sat, 25 Feb 2017 12:36:54 +0100</pubDate>
+      <title>hacking</title>
+      <link>https://sbmueller.github.io/tags/hacking/</link>
+      <pubDate>Sat, 15 Jun 2019 21:20:28 +0200</pubDate>
       
-      <guid>https://sbmueller.github.io/tags/rpi/</guid>
+      <guid>https://sbmueller.github.io/tags/hacking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>opinion</title>
+      <link>https://sbmueller.github.io/tags/opinion/</link>
+      <pubDate>Mon, 31 Dec 2018 11:26:57 +0100</pubDate>
+      
+      <guid>https://sbmueller.github.io/tags/opinion/</guid>
       <description></description>
     </item>
     

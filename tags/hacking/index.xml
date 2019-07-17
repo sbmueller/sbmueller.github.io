@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hacking on Sebastian Müller</title>
+    <link>https://sbmueller.github.io/tags/hacking/</link>
+    <description>Recent content in hacking on Sebastian Müller</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 15 Jun 2019 21:20:28 +0200</lastBuildDate>
+    
+	<atom:link href="https://sbmueller.github.io/tags/hacking/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A Digital Doorbell in 10 Minutes</title>
+      <link>https://sbmueller.github.io/posts/iot_bell/</link>
+      <pubDate>Sat, 15 Jun 2019 21:20:28 +0200</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/iot_bell/</guid>
+      <description>Today I discovered that my doorbell is broken. Since I&amp;rsquo;m awaiting some deliveries, I figured I need a hotfix until my landlord repairs the analog doorbell. It took me only 10 minutes to implement a digital solution.
+Concept I immediately thought of IFTTT, an online service that acts as hub between several IoT devices or internet services. The scheme is always the same:
+ If this happens, then do that.</description>
+    </item>
+    
+    <item>
+      <title>My Terminal Setup</title>
+      <link>https://sbmueller.github.io/posts/terminal_setup/</link>
+      <pubDate>Sun, 19 May 2019 16:20:37 +0100</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/terminal_setup/</guid>
+      <description>On the Terminal Why is the terminal still something important in the year 2019 you might ask. There are GUI applications for literally any purpose, so why bother setting up a terminal environment where you have to enter complicated commands?
+It surely depends on the kind of work you are doing, but for most engineers and developers, a neat terminal setup provides some crucial benefits. First of all, this kind of workflow has to be embraced and is not for everyone.</description>
+    </item>
+    
+    <item>
+      <title>Device independent AdBlock with Pi-Hole</title>
+      <link>https://sbmueller.github.io/posts/pihole/</link>
+      <pubDate>Sat, 25 Feb 2017 12:36:54 +0100</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/pihole/</guid>
+      <description>Ads are annoying. Not only when trying to read morning news and more than half of the website is spammed with moving gifs (or flash ads, the worst kind of ads), but also they are able to spy on you and track you browsing behaviour.
+Of course, most people are using browser extensions like AdblockPlus or (my favorite) uBlockOrigin. But what about your devices that do not support extensions? For instance, I own a Samsung Smart TV and there is no way Samsung is letting me install some privacy enhancing apps.</description>
+    </item>
+    
+  </channel>
+</rss>
