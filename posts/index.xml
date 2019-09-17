@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Sebastian Müller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 30 Jun 2019 13:52:11 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 17 Sep 2019 15:00:41 +0200</lastBuildDate>
     
 	<atom:link href="https://sbmueller.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How To Read 7 Books one Week</title>
+      <link>https://sbmueller.github.io/posts/reading/</link>
+      <pubDate>Tue, 17 Sep 2019 15:00:41 +0200</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/reading/</guid>
+      <description>Does that title sound familiar? For me it does. Since one of my fundamental beliefs is the duty to improve myself on a daily basis, I have picked up the habit of reading.
+A disappointing claim Admittedly, I consider myself a slow reader and therefore endeavored to improve my reading speed. I stumbled upon countless videos on YouTube, mostly presenting two hacks:
+ Practice speed reading Replace books by audio books  While I didn&amp;rsquo;t dive into speed reading (I found it exhausting), I considered audio books.</description>
+    </item>
     
     <item>
       <title>What I learned: Pandoc</title>
