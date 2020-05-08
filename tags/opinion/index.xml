@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>opinion on Sebastian Müller</title>
@@ -6,10 +6,19 @@
     <description>Recent content in opinion on Sebastian Müller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Sep 2019 15:00:41 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 08 May 2020 20:49:55 +0200</lastBuildDate>
     
 	<atom:link href="https://sbmueller.github.io/tags/opinion/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Thriving during the COVID-19 Pandemic</title>
+      <link>https://sbmueller.github.io/posts/covid/</link>
+      <pubDate>Fri, 08 May 2020 20:49:55 +0200</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/covid/</guid>
+      <description>The corona pandemic is the most severe catastrophe that humanity has faced in many decades. The impact of the pandemic can&amp;rsquo;t be fully grasped currently, but it&amp;rsquo;s posing a major threat to our health and economy. The universal fear of getting infected (with a low, but not an improbable risk of a difficult progression or death) along with the fear of losing one&amp;rsquo;s job or business due to a heavy regression is making it difficult for us all to keep a positive mindset.</description>
+    </item>
     
     <item>
       <title>How To Read 7 Books one Week</title>

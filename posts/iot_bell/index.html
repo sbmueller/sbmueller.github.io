@@ -7,7 +7,7 @@
 		
 		
 		<meta name="description" content="I&#39;m an engineer.">
-		<meta name="generator" content="Hugo 0.55.6" />
+		<meta name="generator" content="Hugo 0.70.0" />
 		<title>A Digital Doorbell in 10 Minutes &middot; Sebastian Müller</title>
 		<link rel="shortcut icon" href="https://sbmueller.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://sbmueller.github.io/css/style.css">
@@ -64,59 +64,44 @@
                 </header>
                 
                 <section id="post-body">
-                    
-
-<p>Today I discovered that my doorbell is broken. Since I&rsquo;m awaiting some deliveries,
+                    <p>Today I discovered that my doorbell is broken. Since I&rsquo;m awaiting some deliveries,
 I figured I need a hotfix until my landlord repairs the analog doorbell. It took me
 only 10 minutes to implement a digital solution.</p>
-
 <h2 id="concept">Concept</h2>
-
 <p>I immediately thought of <a href="https://ifttt.com/">IFTTT</a>, an online service that
 acts as hub between several IoT devices or internet services. The scheme is
 always the same:</p>
-
 <blockquote>
 <p>If <strong>this</strong> happens, then do <strong>that</strong>.</p>
 </blockquote>
-
 <p>For <strong>this</strong> I thought of a QR code that someone in front of my door could
 scan, which directs her to a website. As soon as that website is accessed, the
 trigger is fired.</p>
-
 <p>The <strong>that</strong> would just be a simple notification on my phone, displayed by the
 IFTTT app.</p>
-
 <h2 id="implementation">Implementation</h2>
-
 <p>I went to set up a new applet in my IFTTT account. The suitable trigger for my
 purpose is called &ldquo;Webhook&rdquo;. It can easily be enabled and in the trigger&rsquo;s
 settings page, I can see my custom URL, which looks something like
 <code>https://maker.ifttt.com/use/{key}</code>. When accessing that page,
 the instructions are very clear:</p>
-
 <blockquote>
 <p>To trigger an event, make a POST or GET web request to
 <code>https://maker.ifttt.com/trigger/{event}/with/key/{key}</code></p>
 </blockquote>
-
 <p>where <code>{event}</code> is a custom key to identify the event. I chose <code>ring_bell</code>.</p>
-
 <p>With that set up, I only needed to create a QR code, that directs to that
 website. There are enough options do to this, but I used <a href="https://www.qrcode-generator.de/">QR Code Generator</a>.
 When setting up a free account there, I even get the possibility to add a text
 field to the code. I chose to use my name, obviously.</p>
-
 <p>For the action, I chose the notification service which just sends a push
 notification to an IFTTT Android or iOS app. I set it up to notify me with the
 text &ldquo;Someone just rang the doorbell&rdquo;.</p>
-
 <p>Now all I had to do was print out the code and glue it onto the &ldquo;out of order&rdquo;
 sign someone has put up to cover the broken doorbells. Here is the notification
 I get (in German) with about 3 seconds delay after someone accesses the
 website:</p>
-
-<p><img src="/images/ifttt_notification.png" alt="Notification" /></p>
+<p><img src="/images/ifttt_notification.png" alt="Notification"></p>
 
                 </section>
             </article>
@@ -156,7 +141,7 @@ website:</p>
     
     <p class="small">
     
-        &copy; 2019 Sebastian Müller
+        © 2019 Sebastian Müller
     
     </p>
     <p class="small">

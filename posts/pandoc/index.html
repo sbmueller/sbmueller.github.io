@@ -7,7 +7,7 @@
 		
 		
 		<meta name="description" content="I&#39;m an engineer.">
-		<meta name="generator" content="Hugo 0.55.6" />
+		<meta name="generator" content="Hugo 0.70.0" />
 		<title>What I learned: Pandoc &middot; Sebastian Müller</title>
 		<link rel="shortcut icon" href="https://sbmueller.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://sbmueller.github.io/css/style.css">
@@ -64,13 +64,10 @@
                 </header>
                 
                 <section id="post-body">
-                    
-
-<p>I love using LaTeX for creating documents and slides. I chose it over
+                    <p>I love using LaTeX for creating documents and slides. I chose it over
 alternatives like Word (because IMO Word behaves inconsistenly and I take much
 longer to fiddle with the options to get a nice document) or <a href="https://github.com/hakimel/reveal.js">reveal.js</a>
 (because of it&rsquo;s complex file structure and I don&rsquo;t get along with node).</p>
-
 <p>The only problem with LaTex is that it&rsquo;s pretty outdated and the language
 itself is filled with redundancy. My friend Ben Hilburn wrote a <a href="https://bhilburn.org/latex-needs-to-be-reborn/">blog post</a>
 about this as well. I recently began to work around the pain of plain LaTeX by
@@ -78,46 +75,36 @@ using <a href="https://github.com/jgm/pandoc">Pandoc</a>. It is a very handy ope
 tool that provides functionality to convert documents between different formats. In
 particular, it lets me write my document in <strong>another</strong> language, before
 converting it internally into LaTeX and then producing a PDF.</p>
-
 <h1 id="how-it-works">How it works</h1>
-
 <p>I chose to write my documents in <a href="https://daringfireball.net/projects/markdown/syntax">Markdown</a>
 instead of LaTeX. This works well both for print-out documents and slides. For
 instance, the highest hierachy of sections in a Markdown document will become
 the sections of the LaTeX slides.  Subsections will become frame titles and so
 on. To give an examaple, this:</p>
-
-<pre><code class="language-tex">\begin{frame}{Super Important List}
-\begin{itemize}
-\tightlist
-\item
-  \texttt{master} branch is default branch in git
-\item
-  \texttt{feature} branch is where new features get implemented
-\item
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tex" data-lang="tex"><span style="color:#66d9ef">\begin</span>{frame}{Super Important List}
+<span style="color:#66d9ef">\begin</span>{itemize}
+<span style="color:#66d9ef">\tightlist</span>
+<span style="color:#66d9ef">\item</span>
+  <span style="color:#66d9ef">\texttt</span>{master} branch is default branch in git
+<span style="color:#66d9ef">\item</span>
+  <span style="color:#66d9ef">\texttt</span>{feature} branch is where new features get implemented
+<span style="color:#66d9ef">\item</span>
   Use a pull request to get changes from a feauture branch onto master
-\end{itemize}
-\end{frame}
-</code></pre>
-
-<p>becomes this in Markdown:</p>
-
-<pre><code class="language-markdown">## Super Important List
-
-- `master` branch is default branch in git
-- `feauture` branch is where new features get implemented
-- Use a pull request got get changes from a feature branch onto master
-</code></pre>
-
-<p>You see a lot of redundancy is gone with Markdown, which directly results in
+<span style="color:#66d9ef">\end</span>{itemize}
+<span style="color:#66d9ef">\end</span>{frame}
+</code></pre></div><p>becomes this in Markdown:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="color:#75715e">## Super Important List
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">-</span> <span style="color:#e6db74">`master`</span> branch is default branch in git
+<span style="color:#66d9ef">-</span> <span style="color:#e6db74">`feauture`</span> branch is where new features get implemented
+<span style="color:#66d9ef">-</span> Use a pull request got get changes from a feature branch onto master
+</code></pre></div><p>You see a lot of redundancy is gone with Markdown, which directly results in
 faster document creation. You can even use LaTeX code in Markdown, which will
 be untouched at the conversion from Markdown into LaTeX and then be processed
 next to the generated LaTeX code.</p>
-
 <p>Print documents etc. work all in the same manner. Here is an example of how my
 Markdown file for a letter looks like:</p>
-
-<pre><code class="language-markdown">---
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">---
 fromname: Your Name
 fromstreet: YourSreet 4
 fromzip: 12345 München
@@ -128,11 +115,11 @@ recipient: |
     Auguststr. 3
 
     11234 Berlin
-subject: &quot;Wichtige Information&quot;
-#salutation: &quot;Sehr geehrte Frau Maier,&quot;
+subject: &#34;Wichtige Information&#34;
+#salutation: &#34;Sehr geehrte Frau Maier,&#34;
 #signature: 1  # place sig.pdf in same folder
-place: &quot;München&quot;
-#date: &quot;10. Mai 2020&quot;
+place: &#34;München&#34;
+#date: &#34;10. Mai 2020&#34;
 ...
 
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
@@ -143,21 +130,14 @@ dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
 invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
 eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
 sea takimata sanctus est Lorem ipsum dolor sit amet.
-</code></pre>
-
-<p>This short Markdown code produces a beautiful PDF. Note that it has a YAML
+</code></pre></div><p>This short Markdown code produces a beautiful PDF. Note that it has a YAML
 header, which gets parsed by Pandoc as well, to fill the fields of the letter
 with the respective information.</p>
-
-<p><img src="/images/letter.png" align="middle" style="display:block;margin-left:auto;margin-right:auto;width:80%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" /></p>
-
+<p><!-- raw HTML omitted --></p>
 <p>To put it another way, Markdown is a more efficient language to transport the
 same information as LaTeX in the majority of cases. So why not use it?</p>
-
 <h1 id="setup">Setup</h1>
-
 <p>I wrote a little <code>Makefile</code> for Pandoc projects, which looks like this:</p>
-
 <pre><code>FILENAME = letter
 
 ${FILENAME}.pdf: ${FILENAME}.md
@@ -165,12 +145,9 @@ ${FILENAME}.pdf: ${FILENAME}.md
 
 clean:
     rm letter.pdf
-</code></pre>
-
-<p>There you can see the <code>pandoc</code> command and it&rsquo;s araguments. I&rsquo;m using a
+</code></pre><p>There you can see the <code>pandoc</code> command and it&rsquo;s araguments. I&rsquo;m using a
 template file in that case, that just tells Pandoc how to create the
 intermediate TeX file.</p>
-
 <p>The source for my <a href="https://github.com/sbmueller/pandoc_beamer">slides</a> and
 <a href="https://github.com/sbmueller/pandoc_letter">letter</a> templates are available on
 GitHub, if you want to dive deeper into the topic.</p>
@@ -213,7 +190,7 @@ GitHub, if you want to dive deeper into the topic.</p>
     
     <p class="small">
     
-        &copy; 2019 Sebastian Müller
+        © 2019 Sebastian Müller
     
     </p>
     <p class="small">

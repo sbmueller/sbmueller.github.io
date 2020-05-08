@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>hacking on Sebastian Müller</title>
@@ -39,7 +39,7 @@ It surely depends on the kind of work you are doing, but for most engineers and 
       
       <guid>https://sbmueller.github.io/posts/pihole/</guid>
       <description>Ads are annoying. Not only when trying to read morning news and more than half of the website is spammed with moving gifs (or flash ads, the worst kind of ads), but also they are able to spy on you and track you browsing behaviour.
-Of course, most people are using browser extensions like AdblockPlus or (my favorite) uBlockOrigin. But what about your devices that do not support extensions? For instance, I own a Samsung Smart TV and there is no way Samsung is letting me install some privacy enhancing apps.</description>
+Of course, most people are using browser extensions like [AdblockPlus] (https://adblockplus.org/) or (my favorite) [uBlockOrigin] (https://github.com/gorhill/uBlock). But what about your devices that do not support extensions?</description>
     </item>
     
   </channel>

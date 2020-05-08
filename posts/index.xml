@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Sebastian Müller</title>
@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Sebastian Müller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Sep 2019 15:00:41 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 08 May 2020 20:49:55 +0200</lastBuildDate>
     
 	<atom:link href="https://sbmueller.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Thriving during the COVID-19 Pandemic</title>
+      <link>https://sbmueller.github.io/posts/covid/</link>
+      <pubDate>Fri, 08 May 2020 20:49:55 +0200</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/covid/</guid>
+      <description>The corona pandemic is the most severe catastrophe that humanity has faced in many decades. The impact of the pandemic can&amp;rsquo;t be fully grasped currently, but it&amp;rsquo;s posing a major threat to our health and economy. The universal fear of getting infected (with a low, but not an improbable risk of a difficult progression or death) along with the fear of losing one&amp;rsquo;s job or business due to a heavy regression is making it difficult for us all to keep a positive mindset.</description>
+    </item>
     
     <item>
       <title>How To Read 7 Books one Week</title>
@@ -130,7 +139,7 @@ With this article, I want to arise awareness of secure communication, and in par
       
       <guid>https://sbmueller.github.io/posts/pihole/</guid>
       <description>Ads are annoying. Not only when trying to read morning news and more than half of the website is spammed with moving gifs (or flash ads, the worst kind of ads), but also they are able to spy on you and track you browsing behaviour.
-Of course, most people are using browser extensions like AdblockPlus or (my favorite) uBlockOrigin. But what about your devices that do not support extensions? For instance, I own a Samsung Smart TV and there is no way Samsung is letting me install some privacy enhancing apps.</description>
+Of course, most people are using browser extensions like [AdblockPlus] (https://adblockplus.org/) or (my favorite) [uBlockOrigin] (https://github.com/gorhill/uBlock). But what about your devices that do not support extensions?</description>
     </item>
     
   </channel>

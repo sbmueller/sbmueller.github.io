@@ -7,7 +7,7 @@
 		
 		
 		<meta name="description" content="I&#39;m an engineer.">
-		<meta name="generator" content="Hugo 0.55.6" />
+		<meta name="generator" content="Hugo 0.70.0" />
 		<title>My Terminal Setup &middot; Sebastian Müller</title>
 		<link rel="shortcut icon" href="https://sbmueller.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://sbmueller.github.io/css/style.css">
@@ -49,7 +49,7 @@
                     </h1>
                     <h2 class="headline">
                     May 19, 2019 16:20
-                    · 967 words
+                    · 966 words
                     · 5 minute read
                       <span class="tags">
                       
@@ -64,28 +64,22 @@
                 </header>
                 
                 <section id="post-body">
-                    
-
-<h2 id="on-the-terminal">On the Terminal</h2>
-
+                    <h2 id="on-the-terminal">On the Terminal</h2>
 <p>Why is the terminal still something important in the year 2019 you might ask.
 There are GUI applications for literally any purpose, so why bother setting up
 a terminal environment where you have to enter complicated commands?</p>
-
 <p>It surely depends on the kind of work you are doing, but for most engineers and
 developers, a neat terminal setup provides some crucial benefits. First of all,
 this kind of workflow has to be embraced and is not for everyone. I moved most
 of my workflow (except Email and Web-Applications) to the terminal while many
 of my colleagues prefer GUI applications for each part of their workflow.
 However, I love my setup for one reason: I&rsquo;m much faster.</p>
-
 <p>One reason for that is that I hardly need to move my hands during work. I
 rarely have to reach for the mouse, move the mouse to a certain location and
 perform a single action. My hands remain mostly in the same position while I&rsquo;m
 working, eliminating unnecessary movement. I&rsquo;m using <strong>vim key bindings</strong> as
 well in my setup, which for instance maps the arrow keys to h, j, k, l. This is
 where the fingers of my right hand are positioned most of the time.</p>
-
 <p>A smart way to bind keys to certain actions allows to have multiple command
 prompts opened for different things and quickly be able to switch between them.
 I use <a href="https://github.com/tmux/tmux">tmux</a> to enable this. So for instance in
@@ -95,29 +89,24 @@ found this to be much quicker than to have two GUI applications running and
 using the mouse to operate them. Since I&rsquo;m using the same keystrokes every day,
 I have memorized them, and they are performed completely automatically, without
 me putting any effort into it.</p>
-
 <p>A second aspect is that while GUI applications might seem easier to operate,
 I don&rsquo;t believe they are generally faster to use. I have tried to use a
 graphical git client recently and often where stuck on where to find a certain
 button to perform a basic git action (&ldquo;I just want to do a <code>git rebase master</code>,
-why is this so complicated?&ldquo;). Surely you can train and become used to it, but
+why is this so complicated?&quot;). Surely you can train and become used to it, but
 then again you can just learn how to use the CLI application. Also, keep in mind
 that the GUI application adds one layer of abstraction, potentially making it
 harder to find the source of a problem.</p>
-
 <h2 id="my-terminal">My Terminal</h2>
-
-<p>So here is my setup as I&rsquo;m writing this post:<br>
-<img src="/images/iterm.png" alt="iTerm2" />
+<p>So here is my setup as I&rsquo;m writing this post:<!-- raw HTML omitted -->
+<img src="/images/iterm.png" alt="iTerm2">
 I have chosen a vertical split since the preview of this article is on the
 second half of the screen, in a web browser. Normally, I work with several tmux
 windows and up to two splits.</p>
-
 <p>As you can see, I use vim in the upper split as my text editor, writing these
 lines. In the lower half, I&rsquo;m in the directory of this website project, ready to run
 some <a href="https://github.com/gohugoio/hugo">hugo</a> (the software to create this website)
 or git commands.</p>
-
 <p>Let&rsquo;s dive into some detail. The application I&rsquo;m running here is
 <a href="https://github.com/gnachman/iTerm2">iTerm2</a>, a great terminal emulator for
 MacOS. Within there, I&rsquo;m running a tmux session, cognizable by the status bar
@@ -126,7 +115,6 @@ blog in parallel to my secret project. I can create
 several windows and quickly switch between them. Note that the <strong>splits are
 part of one window</strong> so It&rsquo;s possible to build up different windows for
 different projects.</p>
-
 <p>I have split the tmux window in two vertical splits. I can quickly switch focus
 beteen them. In each split, a
 <a href="https://github.com/zsh-users/zsh">zsh</a> shell is running. I&rsquo;m using many
@@ -137,19 +125,15 @@ itself. The colors are <a href="https://github.com/MartinSeeler/iterm2-material-
 and the font I use is called <a href="https://github.com/ryanoasis/nerd-fonts">Fura Code NF</a>.
 This font enables me to use glyphs as well, though I&rsquo;m not missing it
 currently.</p>
-
 <p>Some handy CLI tools I don&rsquo;t want to miss here are
 <a href="https://github.com/clvv/fasd">fasd</a>, which allows me to <code>cd</code> to certain
 directories instantly, and <a href="https://github.com/ranger/ranger">ranger</a>, a file
 explorer for the terminal.</p>
-
 <h2 id="my-vim">My Vim</h2>
-
 <p>I <em>really</em> love <a href="https://github.com/vim/vim">vim</a>. In early 2018 I finally
 swiched to vim as my one and only editor/IDE and never looked back. I use it
 for anything at work and privately. There are a lot of resources on why vim is
 great, but I want to summarize it like this:</p>
-
 <blockquote>
 <p>Vim focuses on text editing instead of text writing. In normal mode, the
 keyboard becomes a control panel for altering the content of a file rather
@@ -158,11 +142,8 @@ the keys are mapped to various navigation and modifying functions. This
 enables an incredibly fast workflow, if you&rsquo;re willing to climb the steep
 learning curve.</p>
 </blockquote>
-
 <h3 id="vim-plugins">Vim Plugins</h3>
-
 <p>Vim is extremely customizable with plugins. Plugins I use include:</p>
-
 <ul>
 <li><a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a> Code autocompletion with great Python and C/C++ support.</li>
 <li><a href="https://github.com/scrooloose/nerdtree">nerdtree</a> File explorer in vim.</li>
@@ -173,11 +154,8 @@ learning curve.</p>
 <li><a href="https://github.com/rhysd/vim-grammarous">vim-grammarous</a> Grammar checker.</li>
 <li><a href="https://github.com/sjl/gundo.vim">gundo.vim</a> Visual history of changes to a file.</li>
 </ul>
-
 <h3 id="useful-vim-settings">Useful Vim Settings</h3>
-
 <p>There are countless settings for vim. I want to share some handpicked ones:</p>
-
 <ul>
 <li><code>set colorcolumn=85</code> shows a vertical ruler in column 85</li>
 <li><code>set mouse=a</code> activate mouse support (sometimes handy)</li>
@@ -187,16 +165,13 @@ are unsaved)</li>
 one)</li>
 <li><code>set undofile</code> enable persistent undo history</li>
 <li><code>set undodir=~/.vim/undodir</code> location for persistent history files</li>
-
-<li><p>Also, I use <code>Tab</code> and <code>Shift-Tab</code> to switch buffers and <code>Space</code> to jump
-between splits:</p>
-
+<li>Also, I use <code>Tab</code> and <code>Shift-Tab</code> to switch buffers and <code>Space</code> to jump
+between splits:</li>
+</ul>
 <pre><code>nnoremap &lt;space&gt; &lt;C-W&gt;&lt;C-W&gt;
 nnoremap &lt;tab&gt; :bn&lt;CR&gt;
 nnoremap &lt;S-tab&gt; :bp&lt;CR&gt;
-</code></pre></li>
-</ul>
-
+</code></pre>
                 </section>
             </article>
 
@@ -235,7 +210,7 @@ nnoremap &lt;S-tab&gt; :bp&lt;CR&gt;
     
     <p class="small">
     
-        &copy; 2019 Sebastian Müller
+        © 2019 Sebastian Müller
     
     </p>
     <p class="small">

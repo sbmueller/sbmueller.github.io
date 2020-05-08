@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Sebastian Müller</title>
@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Sebastian Müller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Sep 2019 15:00:41 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 08 May 2020 20:49:55 +0200</lastBuildDate>
     
 	<atom:link href="https://sbmueller.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>opinion</title>
       <link>https://sbmueller.github.io/tags/opinion/</link>
-      <pubDate>Tue, 17 Sep 2019 15:00:41 +0200</pubDate>
+      <pubDate>Fri, 08 May 2020 20:49:55 +0200</pubDate>
       
       <guid>https://sbmueller.github.io/tags/opinion/</guid>
       <description></description>
