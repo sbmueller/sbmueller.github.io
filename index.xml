@@ -6,10 +6,20 @@
     <description>Recent content on Sebastian Müller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 18 May 2020 20:18:52 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2020 11:28:09 +0200</lastBuildDate>
     
 	<atom:link href="https://sbmueller.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>What I Learned: Clang Tools</title>
+      <link>https://sbmueller.github.io/posts/clang/</link>
+      <pubDate>Wed, 10 Jun 2020 11:28:09 +0200</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/clang/</guid>
+      <description>I have recently pivoted professionally and became a C++ developer. Due to that change, I wanted to revisit my tooling landscape that I use for everyday development. In particular, I want to share how I keep my code quality up without any manual effort and at zero dynamic cost by using static code analysis.
+Static Code Analysis/Linting To perform a static code analysis means to search for programming errors and issues before any code is executed (like in a unit test).</description>
+    </item>
     
     <item>
       <title>What I Learned: Notion</title>
