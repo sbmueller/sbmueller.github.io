@@ -6,10 +6,15 @@
     <description>Recent content on Sebastian Müller</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Jun 2020 11:28:09 +0200</lastBuildDate>
-    
-	<atom:link href="https://sbmueller.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Tue, 29 Dec 2020 13:41:12 +0100</lastBuildDate><atom:link href="https://sbmueller.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What I Learned: IKEA has an API</title>
+      <link>https://sbmueller.github.io/posts/ikea/</link>
+      <pubDate>Tue, 29 Dec 2020 13:41:12 +0100</pubDate>
+      
+      <guid>https://sbmueller.github.io/posts/ikea/</guid>
+      <description>Recently I tried to get my hands on a standing desk since I spend a considerable time in the home office sitting in front of a computer. This is a challenging endeavor in the current situation (it&amp;rsquo;s late 2020, in the middle of the &amp;ldquo;second wave&amp;rdquo; of the COVID-19 pandemic). The model that I plan to buy is out of stock on the German IKEA homepage and can&amp;rsquo;t be ordered. There is no information on when it will be available again on the site itself.</description>
+    </item>
     
     <item>
       <title>What I Learned: Clang Tools</title>
