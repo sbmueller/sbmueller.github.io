@@ -1,0 +1,55 @@
+# The URL the site will be built for
+base_url = "https://sbmueller.github.io"
+
+theme = "archie-zola"
+
+taxonomies = [{name = "tags", feed = true},]
+
+title = "sbmueller"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+
+[extra]
+# Put all your custom variables here
+
+# control dark mode: auto | dark | toggle
+mode = "dark"
+
+# subtitle will show under the title in index page
+subtitle = "I'm an engineer."
+
+# if set true, will use external CDN resource to load font and js file
+useCDN = false
+
+favicon = "/icon/favicon.png"
+
+# show in the footer
+copyright = "Sebastian Müller"
+
+# config your Google Analysis ID
+ga = "XXXX-XXXXX"
+
+[[extra.menu]]
+name = "About"
+url = "/about"
+weight = 1
+
+# config social icon info in the footer
+[[extra.social]]
+icon = "github"
+name = "GitHub"
+url = "https://github.com/sbmueller"
+
+[[extra.social]]
+icon = "linkedin"
+name = "LinkedIn"
+url = "https://www.linkedin.com/in/sbmueller/"
