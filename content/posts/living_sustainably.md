@@ -107,7 +107,7 @@ the climate change and cause heavy diseases like cancer or strokes
 [[source]](https://www.ndr.de/ratgeber/gesundheit/Feinstaub-Gefahr-fuer-Lunge-Herz-und-Gefaesse,feinstaub134.html).
 In Germany, transport is responsible for about 15-20 % of the total greenhouse
 gas emissions per year. This number is high enough to be worth to think about.
-![diagram](https://www.umweltbundesamt.de/sites/default/files/medien/361/bilder/tt_thg_crf_plus_1a_details_1.0_wide_h.png)
+![diagram](https://www.umweltbundesamt.de/sites/default/files/medien/384/bilder/3_abb_emi-kohlendioxid-kat_2022.png)
 <center>Annual greenhouse gas emmissions in Germany (source: Umweltbundesamt)</center>
 
 In urban areas it is unattractive to own a car already. Parking space is
