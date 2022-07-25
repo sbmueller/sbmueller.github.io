@@ -22,7 +22,7 @@ highlight_code = true
 # Put all your custom variables here
 
 # control dark mode: auto | dark | toggle
-mode = "dark"
+mode = "toggle"
 
 # subtitle will show under the title in index page
 subtitle = "I'm an engineer."
