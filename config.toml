@@ -36,7 +36,7 @@ favicon = "/icon/favicon.png"
 copyright = "Sebastian Müller"
 
 # config your Google Analysis ID
-ga = "XXXX-XXXXX"
+ga = "UA-105838069-1"
 
 [[extra.menu]]
 name = "About"
