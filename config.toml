@@ -22,7 +22,7 @@ highlight_code = true
 # Put all your custom variables here
 
 # control dark mode: auto | dark | toggle
-mode = "toggle"
+mode = "dark"
 
 # subtitle will show under the title in index page
 subtitle = "I'm an engineer."
@@ -53,3 +53,8 @@ url = "https://github.com/sbmueller"
 icon = "linkedin"
 name = "LinkedIn"
 url = "https://www.linkedin.com/in/sbmueller/"
+
+[[extra.social]]
+icon = "message-circle"
+name = "Mastodon"
+url = "https://fosstodon.org/web/@sbmueller"
