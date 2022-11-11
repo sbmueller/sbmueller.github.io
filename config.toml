@@ -1,10 +1,5 @@
 # The URL the site will be built for
-base_url = "https://sbmueller.github.io"
-
-theme = "archie-zola"
-
-taxonomies = [{name = "tags", feed = true},]
-
+base_url = "https://sbmueller.github.io/"
 title = "sbmueller"
 
 # Whether to automatically compile all Sass files in the sass directory
@@ -13,6 +8,7 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
 
+theme = "apollo"
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
@@ -20,41 +16,16 @@ highlight_code = true
 
 [extra]
 # Put all your custom variables here
+theme = "dark"
+favicon = "icon/favicon.png"
+footer = "Copyright © 2022 Sebastian Müller. All rights reserved."
+mathjax = true
+menu = [
+    { name= "/about", url= "/about", weight=1 },
+]
 
-# control dark mode: auto | dark | toggle
-mode = "dark"
-
-# subtitle will show under the title in index page
-subtitle = "I'm an engineer."
-
-# if set true, will use external CDN resource to load font and js file
-useCDN = false
-
-favicon = "/icon/favicon.png"
-
-# show in the footer
-copyright = "Sebastian Müller"
-
-# config your Google Analysis ID
-ga = "UA-105838069-1"
-
-[[extra.menu]]
-name = "About"
-url = "/about"
-weight = 1
-
-# config social icon info in the footer
-[[extra.social]]
-icon = "github"
-name = "GitHub"
-url = "https://github.com/sbmueller"
-
-[[extra.social]]
-icon = "linkedin"
-name = "LinkedIn"
-url = "https://www.linkedin.com/in/sbmueller/"
-
-[[extra.social]]
-icon = "message-circle"
-name = "Mastodon"
-url = "https://fosstodon.org/web/@sbmueller"
+socials = [
+    { name= "github", url= "https://github.com/sbmueller/", icon="github" },
+    { name= "linkedin", url="https://www.linkedin.com/in/sbmueller/", icon="linkedin" },
+    # { name= "mastodon", url= "https://fosstodon.org/@sbmueller", icon="mastodon" },
+]

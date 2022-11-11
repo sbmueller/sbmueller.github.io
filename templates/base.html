@@ -1,0 +1,22 @@
+{% import "macros/macros.html" as post_macros %}
+
+<!DOCTYPE html>
+<html>
+{% include "partials/header.html" %}
+
+<body>
+    <div class="content">
+        {% include "partials/nav.html" %}
+
+        {# Post page is the default #}
+        {% block main_content %}
+            Nothing here?!
+        {% endblock main_content %}
+        {% if config.extra.footer %}
+            <hr>
+            <center><small>{{ config.extra.footer }}</small></center>
+        {% endif %}
+    </div>
+</body>
+
+</html>

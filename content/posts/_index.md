@@ -1,6 +1,6 @@
 +++
+paginate_by = 7
 path = "posts"
-template = "posts.html"
-transparent = true
+title = "Posts"
 sort_by = "date"
 +++
