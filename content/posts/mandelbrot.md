@@ -61,8 +61,8 @@ Mandelbrot set. If it is lower, it means it left the stability margin before
 calculating all iterations and therefore is unstable and not part of the
 Mandelbrot set.
 
-I will leave out the details on how to plot the image. Just know that I used
-the crate `plotters` and an example can be found [here](https://github.com/plotters-rs/plotters/blob/master/plotters/examples/mandelbrot.rs).
+I will leave out the details on how to plot the image, for the interested, the
+full code can be found on [GitHub](https://github.com/sbmueller/mandelbrot.rs).
 
 The final output looks like this:
 ![Mandelbrot](/images/mandelbrot.png)
