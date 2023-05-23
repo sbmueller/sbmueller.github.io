@@ -15,3 +15,10 @@ C++ libraries. I am constantly looking for new challenges, currently in
 particular with a strong Rust focus.
 
 Opinions are my own etc.
+
+## Imprint
+
+Sebastian Müller\
+Postfach 14\
+77744 Schutterwald\
+Germany
