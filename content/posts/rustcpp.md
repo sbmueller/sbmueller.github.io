@@ -149,3 +149,7 @@ library written in Rust using a C interface to calculate the desired result:
 ```
 Result: 8
 ```
+
+If you want to see a comprehensive proof on concept using Conan instead of
+plain GCC, you can find that on my
+[GitHub](https://github.com/sbmueller/rust-conan-template).
