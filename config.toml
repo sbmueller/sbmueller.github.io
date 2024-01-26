@@ -19,7 +19,7 @@ highlight_theme = "two-dark"
 # Put all your custom variables here
 theme = "dark"
 favicon = "icon/favicon.png"
-footer = "Copyright © 2023 Sebastian Müller. All rights reserved."
+footer = "Copyright © 2024 Sebastian Müller. All rights reserved."
 mathjax = true
 menu = [
     { name= "/about", url= "/about", weight=1 },
