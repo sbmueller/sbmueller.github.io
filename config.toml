@@ -28,5 +28,5 @@ menu = [
 socials = [
     { name= "github", url= "https://github.com/sbmueller/", icon="github" },
     { name= "linkedin", url="https://www.linkedin.com/in/sbmueller/", icon="linkedin" },
-    { name= "mastodon", url= "https://fosstodon.org/@sbmueller", icon="mastodon" },
+    # { name= "mastodon", url= "https://fosstodon.org/@sbmueller", icon="mastodon" },
 ]
