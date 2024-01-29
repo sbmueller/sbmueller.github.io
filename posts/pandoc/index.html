@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         What I learned: Pandoc
+        
+    </title>
+
+        
+            <meta property="og:title" content="What I learned: Pandoc" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    
+        <link rel="icon" type="image/png" href=icon&#x2F;favicon.png />
+    
+
+    
+    
+        <link href=https://sbmueller.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="sbmueller" href="https://sbmueller.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://sbmueller.github.io/theme/dark.css />
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://sbmueller.github.io/main.css />
+
+    
+</head>
+
+<body>
+    <div class="content">
+        <header>
+    <style>
+    .avatar {
+      vertical-align: middle;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+    #wrapper {
+        width: 100%;
+        clear: both;
+        text-align: center;
+    }
+    </style>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;sbmueller.github.io&#x2F;>sbmueller</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;sbmueller&#x2F;" class="social">
+                <img alt=github src="/social_icons/github.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;sbmueller&#x2F;" class="social">
+                <img alt=linkedin src="/social_icons/linkedin.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=&#x2F;about style="margin-left: 0.7em">&#x2F;about</a>
+        
+
+        
+    </nav>
+    <div id="wrapper">
+        <a href=https:&#x2F;&#x2F;sbmueller.github.io&#x2F;>
+            <img src="https://avatars.githubusercontent.com/u/7465688?v=4" class="avatar" />
+        </a>
+    </div>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        What I learned: Pandoc<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2019-06-30</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+
+        <section class="body">
+            <p>I love using LaTeX for creating documents and slides. I chose it over
+alternatives like Word (because IMO Word behaves inconsistenly and I take much
+longer to fiddle with the options to get a nice document) or <a href="https://github.com/hakimel/reveal.js">reveal.js</a>
+(because of it's complex file structure and I don't get along with node).</p>
+<p>The only problem with LaTex is that it's pretty outdated and the language
+itself is filled with redundancy. My friend Ben Hilburn wrote a <a href="https://bhilburn.org/latex-needs-to-be-reborn/">blog post</a>
+about this as well. I recently began to work around the pain of plain LaTeX by
+using <a href="https://github.com/jgm/pandoc">Pandoc</a>. It is a very handy open source
+tool that provides functionality to convert documents between different formats. In
+particular, it lets me write my document in <strong>another</strong> language, before
+converting it internally into LaTeX and then producing a PDF.</p>
+<h1 id="how-it-works">How it works</h1>
+<p>I chose to write my documents in <a href="https://daringfireball.net/projects/markdown/syntax">Markdown</a>
+instead of LaTeX. This works well both for print-out documents and slides. For
+instance, the highest hierachy of sections in a Markdown document will become
+the sections of the LaTeX slides.  Subsections will become frame titles and so
+on. To give an examaple, this:</p>
+<pre data-lang="tex" style="background-color:#282c34;color:#abb2bf;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="color:#c678dd;">\begin</span><span>{frame}{Super Important List}
+</span><span style="color:#c678dd;">\begin</span><span>{itemize}
+</span><span style="color:#56b6c2;">\tightlist
+</span><span style="color:#56b6c2;">\item
+</span><span>  </span><span style="color:#56b6c2;">\texttt</span><span>{master} branch is default branch in git
+</span><span style="color:#56b6c2;">\item
+</span><span>  </span><span style="color:#56b6c2;">\texttt</span><span>{feature} branch is where new features get implemented
+</span><span style="color:#56b6c2;">\item
+</span><span>  Use a pull request to get changes from a feauture branch onto master
+</span><span style="color:#c678dd;">\end</span><span>{itemize}
+</span><span style="color:#c678dd;">\end</span><span>{frame}
+</span></code></pre>
+<p>becomes this in Markdown:</p>
+<pre data-lang="markdown" style="background-color:#282c34;color:#abb2bf;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#61afef;">## Super Important List
+</span><span>
+</span><span style="color:#e06c75;">- </span><span style="color:#98c379;">`master`</span><span style="color:#e06c75;"> branch is default branch in git
+</span><span style="color:#e06c75;">- </span><span style="color:#98c379;">`feauture`</span><span style="color:#e06c75;"> branch is where new features get implemented
+</span><span style="color:#e06c75;">- Use a pull request got get changes from a feature branch onto master
+</span></code></pre>
+<p>You see a lot of redundancy is gone with Markdown, which directly results in
+faster document creation. You can even use LaTeX code in Markdown, which will
+be untouched at the conversion from Markdown into LaTeX and then be processed
+next to the generated LaTeX code.</p>
+<p>Print documents etc. work all in the same manner. Here is an example of how my
+Markdown file for a letter looks like:</p>
+<pre data-lang="markdown" style="background-color:#282c34;color:#abb2bf;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="background-color:#515151;color:#abb2bf;">---
+</span><span>fromname: Your Name
+</span><span>fromstreet: YourSreet 4
+</span><span>fromzip: 12345 München
+</span><span>fromemail: my@mail.com
+</span><span>recipient: |
+</span><span>    Title
+</span><span>
+</span><span>    Auguststr. 3
+</span><span>
+</span><span>    11234 Berlin
+</span><span>subject: &quot;Wichtige Information&quot;
+</span><span style="color:#61afef;">#salutation: &quot;Sehr geehrte Frau Maier,&quot;
+</span><span style="color:#61afef;">#signature: 1  # place sig.pdf in same folder
+</span><span>place: &quot;München&quot;
+</span><span style="color:#61afef;">#date: &quot;10. Mai 2020&quot;
+</span><span>...
+</span><span>
+</span><span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+</span><span>tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+</span><span>vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+</span><span>gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
+</span><span>dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+</span><span>invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+</span><span>eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+</span><span>sea takimata sanctus est Lorem ipsum dolor sit amet.
+</span></code></pre>
+<p>This short Markdown code produces a beautiful PDF. Note that it has a YAML
+header, which gets parsed by Pandoc as well, to fill the fields of the letter
+with the respective information.</p>
+<img src="/images/letter.png" align="middle" style="display:block;margin-left:auto;margin-right:auto;width:80%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
+<p>To put it another way, Markdown is a more efficient language to transport the
+same information as LaTeX in the majority of cases. So why not use it?</p>
+<h1 id="setup">Setup</h1>
+<p>I wrote a little <code>Makefile</code> for Pandoc projects, which looks like this:</p>
+<pre style="background-color:#282c34;color:#abb2bf;"><code><span>FILENAME = letter
+</span><span>
+</span><span>${FILENAME}.pdf: ${FILENAME}.md
+</span><span>    pandoc -t latex -s --template=template.letter letter.md -o letter.pdf
+</span><span>
+</span><span>clean:
+</span><span>    rm letter.pdf
+</span></code></pre>
+<p>There you can see the <code>pandoc</code> command and it's araguments. I'm using a
+template file in that case, that just tells Pandoc how to create the
+intermediate TeX file.</p>
+<p>The source for my <a href="https://github.com/sbmueller/pandoc_beamer">slides</a> and
+<a href="https://github.com/sbmueller/pandoc_letter">letter</a> templates are available on
+GitHub, if you want to dive deeper into the topic.</p>
+
+        </section>
+
+        
+
+    </article>
+</main>
+
+
+        
+            <hr>
+            <center><small>Copyright © 2024 Sebastian Müller. All rights reserved.</small></center>
+        
+    </div>
+</body>
+
+</html>

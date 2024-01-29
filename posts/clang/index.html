@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         What I Learned: Clang Tools
+        
+    </title>
+
+        
+            <meta property="og:title" content="What I Learned: Clang Tools" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    
+        <link rel="icon" type="image/png" href=icon&#x2F;favicon.png />
+    
+
+    
+    
+        <link href=https://sbmueller.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="sbmueller" href="https://sbmueller.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://sbmueller.github.io/theme/dark.css />
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://sbmueller.github.io/main.css />
+
+    
+</head>
+
+<body>
+    <div class="content">
+        <header>
+    <style>
+    .avatar {
+      vertical-align: middle;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+    #wrapper {
+        width: 100%;
+        clear: both;
+        text-align: center;
+    }
+    </style>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;sbmueller.github.io&#x2F;>sbmueller</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;sbmueller&#x2F;" class="social">
+                <img alt=github src="/social_icons/github.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;sbmueller&#x2F;" class="social">
+                <img alt=linkedin src="/social_icons/linkedin.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=&#x2F;about style="margin-left: 0.7em">&#x2F;about</a>
+        
+
+        
+    </nav>
+    <div id="wrapper">
+        <a href=https:&#x2F;&#x2F;sbmueller.github.io&#x2F;>
+            <img src="https://avatars.githubusercontent.com/u/7465688?v=4" class="avatar" />
+        </a>
+    </div>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        What I Learned: Clang Tools<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2020-06-10</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+
+        <section class="body">
+            <p>I have recently pivoted professionally and became a C++ developer. Due to that
+change, I wanted to revisit my tooling landscape that I use for everyday
+development. In particular, I want to share how I keep my code quality up
+without any manual effort and at zero dynamic cost by using static code
+analysis.</p>
+<h1 id="static-code-analysis-linting">Static Code Analysis/Linting</h1>
+<p>To perform a static code analysis means to search for programming errors and
+issues before any code is executed (like in a unit test). It's the first
+measure that the computer itself can take to improve code quality. The best
+thing is: static code analysis can run automatically once set up with your IDE
+and therefore provide checks and guidance with no additional effort on the
+programmer's side.</p>
+<h2 id="set-up">Set-Up</h2>
+<p>There are various static code analyzing tools for all kinds of programming
+languages, but I'm going to focus on <code>clang-tidy</code> here. It's part of the LLVM
+toolchain and a standalone tool that you can use by just executing</p>
+<pre style="background-color:#282c34;color:#abb2bf;"><code><span>clangtidy main.cpp
+</span></code></pre>
+<p>However, since manual checks are inconvenient and can be forgotten, it is
+recommended to integrate <code>clang-tidy</code> into your IDE. I'm using vim as my IDE
+and make use of a plugin called <a href="https://github.com/dense-analysis/ale">ALE</a>.
+This plugin just makes sure to run any analyzing tools of my choice
+asynchronously in the background while I'm coding and I'm sure there is similar
+functionality in other IDEs as well. ALE automatically checks code on open and
+save actions but can be configured more precisely.</p>
+<p>As part of the LLVM toolchain, <code>clang-tidy</code> needs a compilation database to
+work properly. This is a small JSON file that specifies which file is going to
+be compiled with what compiler command, to identify the C++ standard used, the
+directories included, etc. Only with that information, reliable linting is
+possible. For CMake projects, the creation of such a <code>compile_commands.json</code>
+file is straightforward, by setting the CMake variable
+<code>CMAKE_CREATE_COMPILATION_DATABASE</code> to <code>ON</code>. The file will be created in the
+build directory and I usually symlink it into the project root, since all clang
+tools search for it in the working directory and its parent directories.</p>
+<h3 id="cmake">CMake</h3>
+<p>It is possible to set up CMake to run <code>clang-tidy</code> during the build process with
+CMake 3.7.2 or later. Just set the variable <code>CMAKE_CXX_CLANG_TIDY</code> to
+<code>&quot;clang-tidy;-checks=*&quot;</code>.</p>
+<h2 id="example">Example</h2>
+<p>Let's assume this very basic definition of a C++ class:</p>
+<pre data-lang="cpp" style="background-color:#282c34;color:#abb2bf;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#c678dd;">class </span><span style="color:#e5c07b;">Base </span><span>{
+</span><span style="color:#c678dd;">public</span><span>:
+</span><span>  </span><span style="color:#61afef;">Base</span><span>();
+</span><span>  </span><span style="color:#61afef;">~Base</span><span>();
+</span><span>  </span><span style="color:#61afef;">Base</span><span>(</span><span style="color:#c678dd;">const</span><span> Base &amp;</span><span style="color:#e06c75;">other</span><span>);
+</span><span>};
+</span></code></pre>
+<p>Let's execute <code>clang-tidy</code> in the terminal here. I enabled all checks for this
+example, which normally will return a lot of output when executed on a bigger
+source code file:</p>
+<pre style="background-color:#282c34;color:#abb2bf;"><code><span>$ clang-tidy --checks=&quot;*&quot; main.cpp
+</span><span>2 warnings generated.
+</span><span>/Users/senpo/src/test/main.cpp:1:7: warning: class &#39;Base&#39; defines a non-default destructor and a copy constructor but does not define a copy assignment operator, a move constructor or a move assignment operator [hicpp-special-member-functions]
+</span><span>class Base {
+</span><span>      ^
+</span></code></pre>
+<p><code>clang-tidy</code> is warning us that we are violating the
+<a href="https://en.cppreference.com/w/cpp/language/rule_of_three">Rule of Three</a>,
+which tells us if a class has a user-defined copy constructor, copy assignment
+operator or destructor, all three of them shall be implemented. The rule of
+five extends this statement for the move constructor and the move assignment
+operator. This issue will probably not raise a compilation or runtime error,
+but as best practice can avoid exhausting bug searches in the future. So even
+after compilation and unit-testing, this kind of issue would have remained
+undetected without linting!</p>
+<p>This is great and we can improve our code from here. With IDE integration, you
+even get these messages directly while writing the code, without running
+<code>clang-tidy</code> manually:</p>
+<p><img src="/images/clang.png" alt="clang tools in vim" /></p>
+<h1 id="code-formatting">Code Formatting</h1>
+<p>Besides linting, clang also offers a tool to properly format source code files,
+named <code>clang-format</code>. By running it on a file, it will output a formatted
+version of that source code file. To directly change the content of the file,
+the <code>-i</code> flag can be used.
+Let's look at this example:</p>
+<pre data-lang="cpp" style="background-color:#282c34;color:#abb2bf;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#c678dd;">#include</span><span style="color:#98c379;">&lt;iostream&gt;
+</span><span>
+</span><span style="color:#c678dd;">int </span><span style="color:#61afef;">main</span><span>(){
+</span><span>
+</span><span>    
+</span><span>    std::cout &lt;&lt; </span><span style="color:#98c379;">&quot;Hello, &quot;
+</span><span>      &lt;&lt; </span><span style="color:#98c379;">&quot;World!&quot; </span><span>&lt;&lt; std::endl;
+</span><span>    </span><span style="color:#c678dd;">return
+</span><span>      </span><span style="color:#d19a66;">0</span><span>; }
+</span></code></pre>
+<p>That's a badly formatted code. Let's see what <code>clang-format</code> suggests:</p>
+<pre style="background-color:#282c34;color:#abb2bf;"><code><span>$ clang-format main.cpp
+</span><span>#include &lt;iostream&gt;
+</span><span>
+</span><span>int main() {
+</span><span>
+</span><span>  std::cout &lt;&lt; &quot;Hello, &quot; &lt;&lt; &quot;World!&quot; &lt;&lt; std::endl;
+</span><span>  return 0;
+</span><span>}
+</span></code></pre>
+<p>Various coding styles can be set via the --style flag, including own
+definitions that are usually stored in a <code>.clang-format</code> file in the project
+root. For example, have a look at the
+<a href="https://github.com/gnuradio/gnuradio/blob/master/.clang-format">GNU Radio clang-format file</a>.</p>
+<p>As with linting, this tool can be directly integrated into your IDE, for
+instance, to format with a hotkey or to format before each save. This will make
+sure you always stay compliant with your coding guidelines without any effort
+from your side!</p>
+
+        </section>
+
+        
+
+    </article>
+</main>
+
+
+        
+            <hr>
+            <center><small>Copyright © 2024 Sebastian Müller. All rights reserved.</small></center>
+        
+    </div>
+</body>
+
+</html>

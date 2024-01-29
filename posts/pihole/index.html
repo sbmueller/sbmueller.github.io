@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Device independent AdBlock with Pi-Hole
+        
+    </title>
+
+        
+            <meta property="og:title" content="Device independent AdBlock with Pi-Hole" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    
+        <link rel="icon" type="image/png" href=icon&#x2F;favicon.png />
+    
+
+    
+    
+        <link href=https://sbmueller.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="sbmueller" href="https://sbmueller.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://sbmueller.github.io/theme/dark.css />
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://sbmueller.github.io/main.css />
+
+    
+</head>
+
+<body>
+    <div class="content">
+        <header>
+    <style>
+    .avatar {
+      vertical-align: middle;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+    #wrapper {
+        width: 100%;
+        clear: both;
+        text-align: center;
+    }
+    </style>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;sbmueller.github.io&#x2F;>sbmueller</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;sbmueller&#x2F;" class="social">
+                <img alt=github src="/social_icons/github.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;sbmueller&#x2F;" class="social">
+                <img alt=linkedin src="/social_icons/linkedin.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=&#x2F;about style="margin-left: 0.7em">&#x2F;about</a>
+        
+
+        
+    </nav>
+    <div id="wrapper">
+        <a href=https:&#x2F;&#x2F;sbmueller.github.io&#x2F;>
+            <img src="https://avatars.githubusercontent.com/u/7465688?v=4" class="avatar" />
+        </a>
+    </div>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Device independent AdBlock with Pi-Hole<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2017-02-25</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+
+        <section class="body">
+            <p>Ads are annoying. Not only when trying to read morning news and more than half
+of the website is spammed with moving gifs (or flash ads, the worst kind of
+ads), but also they are able to spy on you and track you browsing behaviour.</p>
+<p>Of course, most people are using browser extensions like [AdblockPlus]
+(https://adblockplus.org/) or (my favorite) [uBlockOrigin]
+(https://github.com/gorhill/uBlock). But what about your devices that do
+not support extensions? For instance, I own a Samsung Smart TV and there is no
+way Samsung is letting me install some privacy enhancing apps. This is exactly
+where <a href="https://pi-hole.net/">Pi-Hole</a> comes in.</p>
+<p>Pi-Hole is a service meant to run on a Raspberry Pi (we all have at least one,
+right?) and serves as a DNS server in your local network. Instead of resolving
+all hostnames without thinking, like your router or any other DNS server would
+do, Pi-Hole has a Blacklist of malicious domains providing either Ads or
+Trackers. These domains are not getting resolved, preventing any device to
+access them as long as they are trying to reach by hostname and not by IP. By
+entering my local Raspberry Pi as DNS server address in my Samsung TV, I found
+out that it was spying on me. A lot. There were several requests every few
+seconds, trying to reach log-ingestion-eu.samsungacr.com. ACR in this URL
+stands for &quot;Automatic Content Recognition&quot;. So my TV was trying to gather data
+on what I am watching, when and how long. I'm glad I can prevent this from now
+on; shame on you Samsung!</p>
+<p>At the same time, I technically don't need a AdBlock plugin on my browser
+anymore, saving some memory and CPU (like 0.1%). The better thing is, many
+websites that aren't meant to be accessed by AdBlocked browsers still work with
+Pi-Hole, since the blocking mechanism works different from browser
+extensions.</p>
+
+        </section>
+
+        
+
+    </article>
+</main>
+
+
+        
+            <hr>
+            <center><small>Copyright © 2024 Sebastian Müller. All rights reserved.</small></center>
+        
+    </div>
+</body>
+
+</html>

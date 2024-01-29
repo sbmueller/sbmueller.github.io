@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         A Digital Doorbell in 10 Minutes
+        
+    </title>
+
+        
+            <meta property="og:title" content="A Digital Doorbell in 10 Minutes" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    
+        <link rel="icon" type="image/png" href=icon&#x2F;favicon.png />
+    
+
+    
+    
+        <link href=https://sbmueller.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="sbmueller" href="https://sbmueller.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://sbmueller.github.io/theme/dark.css />
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://sbmueller.github.io/main.css />
+
+    
+</head>
+
+<body>
+    <div class="content">
+        <header>
+    <style>
+    .avatar {
+      vertical-align: middle;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+    #wrapper {
+        width: 100%;
+        clear: both;
+        text-align: center;
+    }
+    </style>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;sbmueller.github.io&#x2F;>sbmueller</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;sbmueller&#x2F;" class="social">
+                <img alt=github src="/social_icons/github.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;sbmueller&#x2F;" class="social">
+                <img alt=linkedin src="/social_icons/linkedin.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=&#x2F;about style="margin-left: 0.7em">&#x2F;about</a>
+        
+
+        
+    </nav>
+    <div id="wrapper">
+        <a href=https:&#x2F;&#x2F;sbmueller.github.io&#x2F;>
+            <img src="https://avatars.githubusercontent.com/u/7465688?v=4" class="avatar" />
+        </a>
+    </div>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        A Digital Doorbell in 10 Minutes<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2019-06-15</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+
+        <section class="body">
+            <p>Today I discovered that my doorbell is broken. Since I'm awaiting some deliveries,
+I figured I need a hotfix until my landlord repairs the analog doorbell. It took me
+only 10 minutes to implement a digital solution.</p>
+<h2 id="concept">Concept</h2>
+<p>I immediately thought of <a href="https://ifttt.com/">IFTTT</a>, an online service that
+acts as hub between several IoT devices or internet services. The scheme is
+always the same:</p>
+<blockquote>
+<p>If <strong>this</strong> happens, then do <strong>that</strong>.</p>
+</blockquote>
+<p>For <strong>this</strong> I thought of a QR code that someone in front of my door could
+scan, which directs her to a website. As soon as that website is accessed, the
+trigger is fired.</p>
+<p>The <strong>that</strong> would just be a simple notification on my phone, displayed by the
+IFTTT app.</p>
+<h2 id="implementation">Implementation</h2>
+<p>I went to set up a new applet in my IFTTT account. The suitable trigger for my
+purpose is called &quot;Webhook&quot;. It can easily be enabled and in the trigger's
+settings page, I can see my custom URL, which looks something like
+<code>https://maker.ifttt.com/use/{key}</code>. When accessing that page,
+the instructions are very clear:</p>
+<blockquote>
+<p>To trigger an event, make a POST or GET web request to
+<code>https://maker.ifttt.com/trigger/{event}/with/key/{key}</code></p>
+</blockquote>
+<p>where <code>{event}</code> is a custom key to identify the event. I chose <code>ring_bell</code>.</p>
+<p>With that set up, I only needed to create a QR code, that directs to that
+website. There are enough options do to this, but I used <a href="https://www.qrcode-generator.de/">QR Code Generator</a>.
+When setting up a free account there, I even get the possibility to add a text
+field to the code. I chose to use my name, obviously.</p>
+<p>For the action, I chose the notification service which just sends a push
+notification to an IFTTT Android or iOS app. I set it up to notify me with the
+text &quot;Someone just rang the doorbell&quot;.</p>
+<p>Now all I had to do was print out the code and glue it onto the &quot;out of order&quot;
+sign someone has put up to cover the broken doorbells. Here is the notification
+I get (in German) with about 3 seconds delay after someone accesses the
+website:</p>
+<p><img src="/images/ifttt_notification.png" alt="Notification" /></p>
+
+        </section>
+
+        
+
+    </article>
+</main>
+
+
+        
+            <hr>
+            <center><small>Copyright © 2024 Sebastian Müller. All rights reserved.</small></center>
+        
+    </div>
+</body>
+
+</html>

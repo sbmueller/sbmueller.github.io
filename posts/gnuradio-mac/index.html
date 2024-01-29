@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Building GNU Radio on macOS
+        
+    </title>
+
+        
+            <meta property="og:title" content="Building GNU Radio on macOS" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    
+        <link rel="icon" type="image/png" href=icon&#x2F;favicon.png />
+    
+
+    
+    
+        <link href=https://sbmueller.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="sbmueller" href="https://sbmueller.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://sbmueller.github.io/theme/dark.css />
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://sbmueller.github.io/main.css />
+
+    
+</head>
+
+<body>
+    <div class="content">
+        <header>
+    <style>
+    .avatar {
+      vertical-align: middle;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+    #wrapper {
+        width: 100%;
+        clear: both;
+        text-align: center;
+    }
+    </style>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;sbmueller.github.io&#x2F;>sbmueller</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;sbmueller&#x2F;" class="social">
+                <img alt=github src="/social_icons/github.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;sbmueller&#x2F;" class="social">
+                <img alt=linkedin src="/social_icons/linkedin.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=&#x2F;about style="margin-left: 0.7em">&#x2F;about</a>
+        
+
+        
+    </nav>
+    <div id="wrapper">
+        <a href=https:&#x2F;&#x2F;sbmueller.github.io&#x2F;>
+            <img src="https://avatars.githubusercontent.com/u/7465688?v=4" class="avatar" />
+        </a>
+    </div>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Building GNU Radio on macOS<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2017-10-22</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+
+        <section class="body">
+            <p>Since this topic has been around for some time, I want to share my experience on how to successfully compile GNU Radio on macOS.</p>
+<h2 id="prequisities">Prequisities</h2>
+<ul>
+<li>macOS 10.13</li>
+<li>MacPorts in <code>/opt/local</code></li>
+<li>Other GNU Radio installation via <code>sudo port install gnuradio</code></li>
+</ul>
+<h2 id="why-build-from-souce">Why build from souce?</h2>
+<p>This is a simple question. If you just want to use GNU Radio, go ahead and
+install via MacPorts or Homebrew. The tricky part is to actually develop for
+GNU Radio without the possibility of a source build.
+<a href="https://github.com/gnuradio/pybombs">PyBOMBS</a> is a great tool for developers
+in order to install several GNU Radio environments simultaneously in different
+prefixes. From there, different features/bugfixes can be implemented without
+touching the global GNU Radio installation or braking anything.</p>
+<h2 id="tutorial">Tutorial</h2>
+<h3 id="1-get-your-python-installation-straight">1. Get your Python installation straight</h3>
+<p>There is an issue around with PyBOMBS, which generally causes the problem that
+Python dependencies don't get installed for the default interpreter, but for
+the Python version specified in the recipes
+(<a href="(https://github.com/gnuradio/pybombs/issues/423)">#423</a>). If your default
+interpeter is Python 2.7, there shouldn't be a problem. If another version is
+set up, UHD most likely will fail to configure and you have to install all
+dependencies by hand using the correct Python version. Find out your default
+interpreter by</p>
+<pre style="background-color:#282c34;color:#abb2bf;"><code><span>python --version
+</span></code></pre>
+<p>For me it's <code>3.5.2</code>, so I could use MacPorts to install dependencies like this</p>
+<pre style="background-color:#282c34;color:#abb2bf;"><code><span>sudo macports install py35-mako
+</span></code></pre>
+<p>Another method is to force CMake to use your 2.7 interpreter, where
+dependencies should be installed by PyBOMBS. For this, open your
+<code>[prefix]/src/uhd/host/cmake/Modules/UHDPython.cmake</code> and change line 35 from</p>
+<pre style="background-color:#282c34;color:#abb2bf;"><code><span>FIND_PACKAGE(PythonInterp)
+</span></code></pre>
+<p>to</p>
+<pre style="background-color:#282c34;color:#abb2bf;"><code><span>FIND_PACKAGE(PythonInterp 2.7 REQUIRED)
+</span></code></pre>
+<p>With this, UHD should succeed to build.</p>
+<h3 id="2-make-cmake-find-qt4">2. Make CMake find Qt4</h3>
+<p>When trying to configure GNU Radio, most likely Qt4 won't be found. This is due
+to a MacPorts <a href="https://trac.macports.org/ticket/49629">issue</a> where <code>qmake</code> is
+not installed in any <code>$PATH</code>. An easy workaround is to symlink <code>qmake</code> from
+your Qt4 installation to <code>/opt/local/bin</code> by this command</p>
+<pre style="background-color:#282c34;color:#abb2bf;"><code><span>sudo ln -s /opt/local/libexec/qt4/bin/qmake /opt/local/bin/qmake
+</span></code></pre>
+<p>After this, CMake should find Qt4 and configure correctly.</p>
+<h3 id="3-fix-linking-against-libgsl">3. Fix linking against libgsl</h3>
+<p>When trying to build now, changes are high that linking will fail with <code>ld: library not found for -lgsl</code>. I'm not 100% sure why this is happening, but most
+likely clang behaves differntly than gcc here. A fix for this has been proposed
+in <a href="https://github.com/gnuradio/gnuradio/pull/1490">#1490</a>. With this commit,
+linking should succeed.</p>
+<h3 id="4-make-cmake-use-correct-python-paths">4. Make CMake use correct Python paths</h3>
+<p>This is the point where you have to <code>cd [prefix]/src/gnuradio/build</code> and invoke
+<code>cmake</code> by hand, because some directories need to be passed manually. I guess
+since there are several Python installations on macOS (MacPorts, system
+default, ...), CMake gets mixed up and tries to spawn a thread in the wrong
+interpreter, when <code>gnuradio-companion</code> is launched. To fix this, use the
+<code>cmake</code> command like this and <em>replace [pybombs prefix] with your prefix</em>.</p>
+<pre style="background-color:#282c34;color:#abb2bf;"><code><span>cmake .. -DCMAKE_INSTALL_PREFIX=[pybombs prefix]
+</span><span>-DPYTHON_EXECUTABLE=/opt/local/bin/python2.7
+</span><span>-DPYTHON_INCLUDE_DIR=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/Headers
+</span><span>-DPYTHON_LIBRARY=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/Python
+</span><span>-DSPHINX_EXECUTABLE=/opt/local/bin/rst2html-2.7.py
+</span></code></pre>
+<p>With this invokation, paths should be set up correctly. Go ahead and build &amp;&amp;
+install with</p>
+<pre style="background-color:#282c34;color:#abb2bf;"><code><span>make &amp;&amp; make install
+</span></code></pre>
+
+        </section>
+
+        
+
+    </article>
+</main>
+
+
+        
+            <hr>
+            <center><small>Copyright © 2024 Sebastian Müller. All rights reserved.</small></center>
+        
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         My Terminal Setup
+        
+    </title>
+
+        
+            <meta property="og:title" content="My Terminal Setup" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    
+        <link rel="icon" type="image/png" href=icon&#x2F;favicon.png />
+    
+
+    
+    
+        <link href=https://sbmueller.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="sbmueller" href="https://sbmueller.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://sbmueller.github.io/theme/dark.css />
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://sbmueller.github.io/main.css />
+
+    
+</head>
+
+<body>
+    <div class="content">
+        <header>
+    <style>
+    .avatar {
+      vertical-align: middle;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+    #wrapper {
+        width: 100%;
+        clear: both;
+        text-align: center;
+    }
+    </style>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;sbmueller.github.io&#x2F;>sbmueller</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;sbmueller&#x2F;" class="social">
+                <img alt=github src="/social_icons/github.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;sbmueller&#x2F;" class="social">
+                <img alt=linkedin src="/social_icons/linkedin.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=&#x2F;about style="margin-left: 0.7em">&#x2F;about</a>
+        
+
+        
+    </nav>
+    <div id="wrapper">
+        <a href=https:&#x2F;&#x2F;sbmueller.github.io&#x2F;>
+            <img src="https://avatars.githubusercontent.com/u/7465688?v=4" class="avatar" />
+        </a>
+    </div>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        My Terminal Setup<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2019-05-19</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+
+        <section class="body">
+            <h2 id="on-the-terminal">On the Terminal</h2>
+<p>Why is the terminal still something important in the year 2019 you might ask.
+There are GUI applications for literally any purpose, so why bother setting up
+a terminal environment where you have to enter complicated commands?</p>
+<p>It surely depends on the kind of work you are doing, but for most engineers and
+developers, a neat terminal setup provides some crucial benefits. First of all,
+this kind of workflow has to be embraced and is not for everyone. I moved most
+of my workflow (except Email and Web-Applications) to the terminal while many
+of my colleagues prefer GUI applications for each part of their workflow.
+However, I love my setup for one reason: I'm much faster.</p>
+<p>One reason for that is that I hardly need to move my hands during work. I
+rarely have to reach for the mouse, move the mouse to a certain location and
+perform a single action. My hands remain mostly in the same position while I'm
+working, eliminating unnecessary movement. I'm using <strong>vim key bindings</strong> as
+well in my setup, which for instance maps the arrow keys to h, j, k, l. This is
+where the fingers of my right hand are positioned most of the time.</p>
+<p>A smart way to bind keys to certain actions allows to have multiple command
+prompts opened for different things and quickly be able to switch between them.
+I use <a href="https://github.com/tmux/tmux">tmux</a> to enable this. So for instance in
+one split, I'm editing a source code file in <a href="https://github.com/vim/vim">vim</a>
+while in the other, I'm executing <a href="https://github.com/git/git">git</a> commands. I
+found this to be much quicker than to have two GUI applications running and
+using the mouse to operate them. Since I'm using the same keystrokes every day,
+I have memorized them, and they are performed completely automatically, without
+me putting any effort into it.</p>
+<p>A second aspect is that while GUI applications might seem easier to operate,
+I don't believe they are generally faster to use. I have tried to use a
+graphical git client recently and often where stuck on where to find a certain
+button to perform a basic git action (&quot;I just want to do a <code>git rebase master</code>,
+why is this so complicated?&quot;). Surely you can train and become used to it, but
+then again you can just learn how to use the CLI application. Also, keep in mind
+that the GUI application adds one layer of abstraction, potentially making it
+harder to find the source of a problem.</p>
+<h2 id="my-terminal">My Terminal</h2>
+<p>So here is my setup as I'm writing this post:<br>
+<img src="/images/iterm.png" alt="iTerm2" />
+I have chosen a vertical split since the preview of this article is on the
+second half of the screen, in a web browser. Normally, I work with several tmux
+windows and up to two splits.</p>
+<p>As you can see, I use vim in the upper split as my text editor, writing these
+lines. In the lower half, I'm in the directory of this website project, ready to run
+some <a href="https://github.com/gohugoio/hugo">hugo</a> (the software to create this website)
+or git commands.</p>
+<p>Let's dive into some detail. The application I'm running here is
+<a href="https://github.com/gnachman/iTerm2">iTerm2</a>, a great terminal emulator for
+MacOS. Within there, I'm running a tmux session, cognizable by the status bar
+at the bottom. I have two tmux windows open, and currenlty I'm working on my
+blog in parallel to my secret project. I can create
+several windows and quickly switch between them. Note that the <strong>splits are
+part of one window</strong> so It's possible to build up different windows for
+different projects.</p>
+<p>I have split the tmux window in two vertical splits. I can quickly switch focus
+beteen them. In each split, a
+<a href="https://github.com/zsh-users/zsh">zsh</a> shell is running. I'm using many
+extensions, mainly <a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a> along with
+<a href="https://github.com/denysdovhan/spaceship-prompt">Spaceship Prompt</a>. As you can
+see, I can directly see the status of my git repository without running git
+itself. The colors are <a href="https://github.com/MartinSeeler/iterm2-material-design">material-dark</a>
+and the font I use is called <a href="https://github.com/ryanoasis/nerd-fonts">Fura Code NF</a>.
+This font enables me to use glyphs as well, though I'm not missing it
+currently.</p>
+<p>Some handy CLI tools I don't want to miss here are
+<a href="https://github.com/clvv/fasd">fasd</a>, which allows me to <code>cd</code> to certain
+directories instantly, and <a href="https://github.com/ranger/ranger">ranger</a>, a file
+explorer for the terminal.</p>
+<h2 id="my-vim">My Vim</h2>
+<p>I <em>really</em> love <a href="https://github.com/vim/vim">vim</a>. In early 2018 I finally
+swiched to vim as my one and only editor/IDE and never looked back. I use it
+for anything at work and privately. There are a lot of resources on why vim is
+great, but I want to summarize it like this:</p>
+<blockquote>
+<p>Vim focuses on text editing instead of text writing. In normal mode, the
+keyboard becomes a control panel for altering the content of a file rather
+than adding letters. So instead of letter keys producing letters in the file,
+the keys are mapped to various navigation and modifying functions. This
+enables an incredibly fast workflow, if you're willing to climb the steep
+learning curve.</p>
+</blockquote>
+<h3 id="vim-plugins">Vim Plugins</h3>
+<p>Vim is extremely customizable with plugins. Plugins I use include:</p>
+<ul>
+<li><a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a> Code autocompletion with great Python and C/C++ support.</li>
+<li><a href="https://github.com/scrooloose/nerdtree">nerdtree</a> File explorer in vim.</li>
+<li><a href="https://github.com/junegunn/fzf.vim">fzf.vim</a> Fuzzy file search.</li>
+<li><a href="https://github.com/tpope/vim-fugitive">vim-fugitive</a> Trigger git commands from within vim.</li>
+<li><a href="https://github.com/vim-airline/vim-airline">vim-airline</a> Fancy status bar.</li>
+<li><a href="https://github.com/scrooloose/nerdcommenter">nerdcommenter</a> Quickly comment/uncomment code parts.</li>
+<li><a href="https://github.com/rhysd/vim-grammarous">vim-grammarous</a> Grammar checker.</li>
+<li><a href="https://github.com/sjl/gundo.vim">gundo.vim</a> Visual history of changes to a file.</li>
+</ul>
+<h3 id="useful-vim-settings">Useful Vim Settings</h3>
+<p>There are countless settings for vim. I want to share some handpicked ones:</p>
+<ul>
+<li><code>set colorcolumn=85</code> shows a vertical ruler in column 85</li>
+<li><code>set mouse=a</code> activate mouse support (sometimes handy)</li>
+<li><code>set hidden</code> allow hidden buffers (switch to another buffer even if changes
+are unsaved)</li>
+<li><code>set foldmethod=indent</code> automatically fold code (I can't live without this
+one)</li>
+<li><code>set undofile</code> enable persistent undo history</li>
+<li><code>set undodir=~/.vim/undodir</code> location for persistent history files</li>
+<li>Also, I use <code>Tab</code> and <code>Shift-Tab</code> to switch buffers and <code>Space</code> to jump
+between splits:</li>
+</ul>
+<pre style="background-color:#282c34;color:#abb2bf;"><code><span>nnoremap &lt;space&gt; &lt;C-W&gt;&lt;C-W&gt;
+</span><span>nnoremap &lt;tab&gt; :bn&lt;CR&gt;
+</span><span>nnoremap &lt;S-tab&gt; :bp&lt;CR&gt;
+</span></code></pre>
+
+        </section>
+
+        
+
+    </article>
+</main>
+
+
+        
+            <hr>
+            <center><small>Copyright © 2024 Sebastian Müller. All rights reserved.</small></center>
+        
+    </div>
+</body>
+
+</html>

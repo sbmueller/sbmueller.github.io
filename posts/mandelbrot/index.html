@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Plotting a Mandelbrot set in 🦀 Rust
+        
+    </title>
+
+        
+            <meta property="og:title" content="Plotting a Mandelbrot set in 🦀 Rust" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    
+        <link rel="icon" type="image/png" href=icon&#x2F;favicon.png />
+    
+
+    
+    
+        <link href=https://sbmueller.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="sbmueller" href="https://sbmueller.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://sbmueller.github.io/theme/dark.css />
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://sbmueller.github.io/main.css />
+
+    
+</head>
+
+<body>
+    <div class="content">
+        <header>
+    <style>
+    .avatar {
+      vertical-align: middle;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+    #wrapper {
+        width: 100%;
+        clear: both;
+        text-align: center;
+    }
+    </style>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;sbmueller.github.io&#x2F;>sbmueller</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;sbmueller&#x2F;" class="social">
+                <img alt=github src="/social_icons/github.svg">
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;sbmueller&#x2F;" class="social">
+                <img alt=linkedin src="/social_icons/linkedin.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=&#x2F;about style="margin-left: 0.7em">&#x2F;about</a>
+        
+
+        
+    </nav>
+    <div id="wrapper">
+        <a href=https:&#x2F;&#x2F;sbmueller.github.io&#x2F;>
+            <img src="https://avatars.githubusercontent.com/u/7465688?v=4" class="avatar" />
+        </a>
+    </div>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Plotting a Mandelbrot set in 🦀 Rust<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2022-11-12</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+
+        <section class="body">
+            <p>Trying to <a href="https://sotr.blog">shaking off the rust</a>, I recently implemented a
+<a href="https://en.wikipedia.org/wiki/Mandelbrot_set">Mandelbrot</a> plotter in Rust. I
+have to admin, despite being familiar with the pretty images, I never looked
+into the math behind it.</p>
+<h2 id="mandelbrot-set">Mandelbrot Set</h2>
+<p>The Mandelbrot set is basically about convergence of a complex recursion.
+Assuming the series</p>
+<p>$$ z_0(c) = 0 + 0i $$
+$$ z_{n+1}(c) = z_n^2 + c $$</p>
+<p>the Mandelbrot set is the set of numbers <code>C</code>, for which this series converges
+against a finite number for a sufficiently &quot;high&quot; number <code>n</code> (typically 100).</p>
+<p>When plotting a Mandelbrot set, the pixel coordinate of the image is taken as
+complex input <code>c</code>. To determine if the series converges against a finite
+number, for each iteration it is checked if the <em>norm</em> of <code>z</code> is lower than an
+arbitrary number (e.g. 2), kind of a stability margin. If this is the case
+for all iterations until <code>n</code>, <code>c</code> is considered part of the Mandelbrot set (and
+is typically colored black).</p>
+<p>Values of <code>c</code>, that lead to the iteration leaving the stability margin, are
+excluded from the Mandelbrot set. In plotting, usually a color map is applied
+that tells &quot;how unstable&quot; the series is, e.g. &quot;how quickly&quot; it diverges.</p>
+<h2 id="rust-implementation">Rust Implementation</h2>
+<p>An iterative approach to calculating the iterations to instability for a given
+<code>c</code> and <code>n = num_iterations</code> can be found here:</p>
+<pre data-lang="rust" style="background-color:#282c34;color:#abb2bf;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c678dd;">type </span><span>ComplexDouble = Complex&lt;</span><span style="color:#c678dd;">f64</span><span>&gt;;
+</span><span style="color:#c678dd;">fn </span><span style="color:#61afef;">mandelbrot</span><span>(</span><span style="color:#e06c75;">c</span><span>: &amp;ComplexDouble, </span><span style="color:#e06c75;">num_iterations</span><span>: </span><span style="color:#c678dd;">u32</span><span>) -&gt; </span><span style="color:#c678dd;">u32 </span><span>{
+</span><span>    </span><span style="color:#c678dd;">let mut</span><span> diverge_count: </span><span style="color:#c678dd;">u32 </span><span>= </span><span style="color:#d19a66;">0</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#c678dd;">let mut</span><span> z = ComplexDouble::new(</span><span style="color:#d19a66;">0.0</span><span>, </span><span style="color:#d19a66;">0.0</span><span>);
+</span><span>    </span><span style="color:#c678dd;">while</span><span> diverge_count &lt;= num_iterations {
+</span><span>        </span><span style="color:#c678dd;">if</span><span> z.</span><span style="color:#56b6c2;">norm</span><span>() &gt; </span><span style="color:#d19a66;">2.0 </span><span>{
+</span><span>            </span><span style="color:#c678dd;">return</span><span> diverge_count;
+</span><span>        }
+</span><span>
+</span><span>        z = z.</span><span style="color:#56b6c2;">powi</span><span>(</span><span style="color:#d19a66;">2</span><span>) + c;
+</span><span>        diverge_count += </span><span style="color:#d19a66;">1</span><span>;
+</span><span>    }
+</span><span>    num_iterations
+</span><span>}
+</span></code></pre>
+<p>To enable a nice color map, the function returns a <code>u32</code> rather than a <code>bool</code>.
+If the returned value equals <code>num_iterations</code>, then <code>c</code> is part of the
+Mandelbrot set. If it is lower, it means it left the stability margin before
+calculating all iterations and therefore is unstable and not part of the
+Mandelbrot set.</p>
+<p>I will leave out the details on how to plot the image, for the interested, the
+full code can be found on <a href="https://github.com/sbmueller/mandelbrot.rs">GitHub</a>.</p>
+<p>The final output looks like this:
+<img src="/images/mandelbrot.png" alt="Mandelbrot" /></p>
+<p>Different parts of the shape have been named and are worth
+to follow up outside this post. For me, it is astonishing that searching for
+stable values of <code>c</code>, there doesn't seem like a simple answer but a rather
+messy/chaotic structure, that can completely change for smallest variations of
+<code>c</code>. The Mandelbrot set is a fascinating mathematical phenomenon and there is much
+to explore further.</p>
+
+        </section>
+
+        
+
+    </article>
+</main>
+
+
+        
+            <hr>
+            <center><small>Copyright © 2024 Sebastian Müller. All rights reserved.</small></center>
+        
+    </div>
+</body>
+
+</html>
