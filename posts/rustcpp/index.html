@@ -1,0 +1,64 @@
+<!doctype html><html class="dark light" lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=https://sbmueller.github.io/ name=base><title> Interfacing with Rust from C/C++ </title><meta content="Interfacing with Rust from C/C++" property=og:title><link href=https://sbmueller.github.io/icon/favicon.png rel=icon type=image/png><link href=https://sbmueller.github.io/fonts.css rel=stylesheet><script async id=MathJax-script src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link href=https://sbmueller.github.io/theme/light.css rel=stylesheet><link href=https://sbmueller.github.io/theme/dark.css id=darkModeStyle rel=stylesheet><script src=https://sbmueller.github.io/js/themetoggle.js></script><script>setTheme(getSavedTheme());</script><link href=https://sbmueller.github.io/main.css media=screen rel=stylesheet><body><div class=left-content></div><div class=content><style>.avatar {
+  vertical-align: middle;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+#wrapper {
+    width: 100%;
+    clear: both;
+    text-align: center;
+}</style><nav><div class=left-nav><a href=https://sbmueller.github.io/>sbmueller</a><div class=socials><a class=social href=https://github.com/sbmueller/ rel=me> <img alt=github src=https://sbmueller.github.io/icons/social/github.svg> </a><a class=social href=https://www.linkedin.com/in/sbmueller/ rel=me> <img alt=linkedin src=https://sbmueller.github.io/icons/social/linkedin.svg> </a></div></div><div class=right-nav><a style="margin-right: 0.5em" href=https://sbmueller.github.io/about>/about</a><a onclick="toggleTheme(); event.preventDefault();" href=# id=dark-mode-toggle> <img style="filter: invert(1)" alt=Light id=sun-icon src=https://sbmueller.github.io/icons/sun.svg> <img alt=Dark id=moon-icon src=https://sbmueller.github.io/icons/moon.svg> </a><script>updateItemToggleTheme()</script></div></nav><div id=wrapper><a href=https://sbmueller.github.io/> <img src="https://avatars.githubusercontent.com/u/7465688?v=4" class=avatar> </a></div><div data-selector="main article p" class=visible-element-observer-root><main><article><div class=title><div class=page-header>Interfacing with Rust from C/C++</div><div class=meta>Posted on <time>2023-08-16</time></div></div><section class=body><p>The Rust programming language is considered as one of the potential successors for C++ when it comes to systems programming. A reasonable first step, when adapting to a new language, is replacing small parts of a system while the remaining parts are maintained in the former language.<p>To achieve this, an interoperability between the new and old language needs to be established. In the following, I will describe how to implement a dynamic Rust library that exposes its interface to C/C++.<h2 id=make-a-rust-library-accessible-from-c-c>Make a Rust library accessible from C/C++</h2><p>Assume working in a cargo directory that was created e.g. by<pre style=background-color:#282c34;color:#abb2bf;><code><span>cargo new --lib mylib
+</span></code></pre><h3 id=use-the-ffi>Use the FFI</h3><p>Rust relies on the Foreign Function Interface (FFI) to interface with other languages. The FFI mainly targets C as language.<p>To make functions in Rust code accessible via the FFI, they need to be externalized and declared as <code>no_mangle</code>:<pre class=language-rust data-lang=rust style=background-color:#282c34;color:#abb2bf;><code class=language-rust data-lang=rust><span style=font-style:italic;color:#5c6370;>// src/lib.rs
+</span><span>
+</span><span>#[</span><span style=color:#e06c75;>no_mangle</span><span>]
+</span><span style=color:#c678dd;>pub extern </span><span style=color:#98c379;>"C" </span><span style=color:#c678dd;>fn </span><span style=color:#61afef;>add</span><span>(</span><span style=color:#e06c75;>a</span><span>: </span><span style=color:#c678dd;>i32</span><span>, </span><span style=color:#e06c75;>b</span><span>: </span><span style=color:#c678dd;>i32</span><span>) -> </span><span style=color:#c678dd;>i32 </span><span>{
+</span><span>    a + b
+</span><span>}
+</span></code></pre><ul><li><code>extern "C"</code> ensures the C ABI is used for calling functions in shared libraries<li><code>#[no_mangle]</code> ensures the function names don't experience <a href=https://en.wikipedia.org/wiki/Name_mangling>mangling</a></ul><p>Both conditions must be fulfilled to enable interfacing via this function using the FFI.<h3 id=build-a-dynamic-library>Build a dynamic library</h3><p>By default, cargo does <a href=https://doc.rust-lang.org/reference/linkage.html#linkage>not build dynamic system libraries</a>. To generate a dynamic library (.dylib on Mac, .so in Linux and .dll on Windows), the <code>Cargo.toml</code> has to be extended by:<pre class=language-toml data-lang=toml style=background-color:#282c34;color:#abb2bf;><code class=language-toml data-lang=toml><span style=font-style:italic;color:#5c6370;># Cargo.toml
+</span><span>[lib]
+</span><span style=color:#e06c75;>crate-type   </span><span>= [</span><span style=color:#98c379;>"cdylib"</span><span>]
+</span></code></pre><p>This ensures <code>rustc</code> actually compiles a dynamic library.<h3 id=generate-a-c-c-header-file>Generate a C/C++ header file</h3><p>To access functions in third-party libraries, C/C++ code needs to include a header file that declares the interface towards the library.<p>The header file can be written and maintained by hand, or be generated automatically by using <code>cbindgen</code>. Add <code>cbindgen</code> to the build dependencies in <code>Cargo.toml</code>:<pre class=language-toml data-lang=toml style=background-color:#282c34;color:#abb2bf;><code class=language-toml data-lang=toml><span style=font-style:italic;color:#5c6370;># Cargo.toml
+</span><span>[build-dependencies]
+</span><span style=color:#e06c75;>cbindgen </span><span>= </span><span style=color:#98c379;>"0.24.3"
+</span></code></pre><p>And place a custom <code>build.rs</code> file in the project root with the following content:<pre class=language-rust data-lang=rust style=background-color:#282c34;color:#abb2bf;><code class=language-rust data-lang=rust><span style=font-style:italic;color:#5c6370;>// build.rs
+</span><span>
+</span><span style=color:#c678dd;>extern crate</span><span> cbindgen;
+</span><span>
+</span><span style=color:#c678dd;>use </span><span>std::env;
+</span><span>
+</span><span style=color:#c678dd;>fn </span><span style=color:#61afef;>main</span><span>() {
+</span><span>    </span><span style=color:#c678dd;>let</span><span> crate_dir = env::var(</span><span style=color:#98c379;>"CARGO_MANIFEST_DIR"</span><span>).</span><span style=color:#56b6c2;>unwrap</span><span>();
+</span><span>    println!(</span><span style=color:#98c379;>"Generating C/C++ header"</span><span>);
+</span><span>    cbindgen::Builder::new()
+</span><span>      .</span><span style=color:#56b6c2;>with_crate</span><span>(crate_dir)
+</span><span>      .</span><span style=color:#56b6c2;>generate</span><span>()
+</span><span>      .</span><span style=color:#56b6c2;>expect</span><span>(</span><span style=color:#98c379;>"Unable to generate bindings"</span><span>)
+</span><span>      .</span><span style=color:#56b6c2;>write_to_file</span><span>(</span><span style=color:#98c379;>"include/mylib.h"</span><span>);
+</span><span>}
+</span></code></pre><p>This will ensure when calling <code>cargo build</code>, <code>cbindgen</code> is used to auto-generate a C/C++ header file that declares the interface of the Rust library.<p>After invoking <code>cargo build --release</code>, the generated header looks like this:<pre class=language-cpp data-lang=cpp style=background-color:#282c34;color:#abb2bf;><code class=language-cpp data-lang=cpp><span style=font-style:italic;color:#5c6370;>// include/mylib.h
+</span><span>
+</span><span style=color:#c678dd;>#include </span><span style=color:#98c379;>&LTcstdarg>
+</span><span style=color:#c678dd;>#include </span><span style=color:#98c379;>&LTcstdint>
+</span><span style=color:#c678dd;>#include </span><span style=color:#98c379;>&LTcstdlib>
+</span><span style=color:#c678dd;>#include </span><span style=color:#98c379;>&LTostream>
+</span><span style=color:#c678dd;>#include </span><span style=color:#98c379;>&LTnew>
+</span><span>
+</span><span style=color:#c678dd;>extern </span><span style=color:#98c379;>"C" </span><span>{
+</span><span>
+</span><span>int32_t </span><span style=color:#61afef;>add</span><span>(int32_t </span><span style=color:#e06c75;>a</span><span>, int32_t </span><span style=color:#e06c75;>b</span><span>);
+</span><span>
+</span><span>} </span><span style=font-style:italic;color:#5c6370;>// extern "C"
+</span></code></pre><h2 id=building-the-c-project>Building the C++ project</h2><p>Assume we want to use the Rust library in a C++ project:<pre class=language-cpp data-lang=cpp style=background-color:#282c34;color:#abb2bf;><code class=language-cpp data-lang=cpp><span style=font-style:italic;color:#5c6370;>// main.cpp
+</span><span style=color:#c678dd;>#include </span><span style=color:#98c379;>&LTadd_rs.h>
+</span><span style=color:#c678dd;>#include </span><span style=color:#98c379;>&LTiostream>
+</span><span>
+</span><span style=color:#c678dd;>int </span><span style=color:#61afef;>main</span><span>()
+</span><span>{
+</span><span>    </span><span style=color:#c678dd;>int</span><span> result = </span><span style=color:#e06c75;>add</span><span>(</span><span style=color:#d19a66;>3</span><span>, </span><span style=color:#d19a66;>5</span><span>); </span><span style=font-style:italic;color:#5c6370;>// `add` is implemented in Rust!
+</span><span>    std::cout << </span><span style=color:#98c379;>"Result: " </span><span><< result << std::endl;
+</span><span>    </span><span style=color:#c678dd;>return </span><span style=color:#d19a66;>0</span><span>;
+</span><span>}
+</span></code></pre><p>To compile this project with GCC, e.g. use:<pre style=background-color:#282c34;color:#abb2bf;><code><span>g++ main.cpp -o add -Imylib/include -Lmylib/target/release/ -ladd_rs
+</span></code></pre><p>Now, if you execute the program, the C++ program will interface with the library written in Rust using a C interface to calculate the desired result:<pre style=background-color:#282c34;color:#abb2bf;><code><span>Result: 8
+</span></code></pre><p>If you want to see a comprehensive proof on concept using Conan instead of plain GCC, you can find that on my <a href=https://github.com/sbmueller/rust-conan-template>GitHub</a>.</section></article></main></div><hr><center><small>Copyright © 2025 Sebastian Müller. All rights reserved.</small></center></div><div class=right-content></div>

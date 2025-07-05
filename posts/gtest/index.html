@@ -1,0 +1,66 @@
+<!doctype html><html class="dark light" lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=https://sbmueller.github.io/ name=base><title> What I learned: Google Test </title><meta content="What I learned: Google Test" property=og:title><link href=https://sbmueller.github.io/icon/favicon.png rel=icon type=image/png><link href=https://sbmueller.github.io/fonts.css rel=stylesheet><script async id=MathJax-script src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link href=https://sbmueller.github.io/theme/light.css rel=stylesheet><link href=https://sbmueller.github.io/theme/dark.css id=darkModeStyle rel=stylesheet><script src=https://sbmueller.github.io/js/themetoggle.js></script><script>setTheme(getSavedTheme());</script><link href=https://sbmueller.github.io/main.css media=screen rel=stylesheet><body><div class=left-content></div><div class=content><style>.avatar {
+  vertical-align: middle;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+#wrapper {
+    width: 100%;
+    clear: both;
+    text-align: center;
+}</style><nav><div class=left-nav><a href=https://sbmueller.github.io/>sbmueller</a><div class=socials><a class=social href=https://github.com/sbmueller/ rel=me> <img alt=github src=https://sbmueller.github.io/icons/social/github.svg> </a><a class=social href=https://www.linkedin.com/in/sbmueller/ rel=me> <img alt=linkedin src=https://sbmueller.github.io/icons/social/linkedin.svg> </a></div></div><div class=right-nav><a style="margin-right: 0.5em" href=https://sbmueller.github.io/about>/about</a><a onclick="toggleTheme(); event.preventDefault();" href=# id=dark-mode-toggle> <img style="filter: invert(1)" alt=Light id=sun-icon src=https://sbmueller.github.io/icons/sun.svg> <img alt=Dark id=moon-icon src=https://sbmueller.github.io/icons/moon.svg> </a><script>updateItemToggleTheme()</script></div></nav><div id=wrapper><a href=https://sbmueller.github.io/> <img src="https://avatars.githubusercontent.com/u/7465688?v=4" class=avatar> </a></div><div data-selector="main article p" class=visible-element-observer-root><main><article><div class=title><div class=page-header>What I learned: Google Test</div><div class=meta>Posted on <time>2018-10-27</time></div></div><section class=body><p>I have tackled a small C++ project recently for an interview process and used the chance to learn more about testing. I have mostly used Python <code>unittest</code> in the past, both for Python and C code. Together with <code>ctypes</code> it is a nice solution to test C against Python code.<p>Now I wanted to have a deeper look into Google Test in combination with CMake.<h2 id=setting-up-google-test>Setting up Google Test</h2><p>I compiled Google Test myself, which is pretty easy with the repo on <a href=https://github.com/google/googletest>Github</a>. This will install headers and libraries necessary for C++ testing in your projects.<p>An easy example of how to use Google Test can be found <a href=https://gist.github.com/mawenbao/9223908>here</a>. I use one single source file to run all my tests:<pre class=language-c++ data-lang=c++ style=background-color:#282c34;color:#abb2bf;><code class=language-c++ data-lang=c++><span style=color:#c678dd;>#include </span><span style=color:#98c379;>&LTgtest/gtest.h>
+</span><span>
+</span><span style=color:#c678dd;>int </span><span style=color:#61afef;>main</span><span>(</span><span style=color:#c678dd;>int </span><span style=color:#e06c75;>argc</span><span>, </span><span style=color:#c678dd;>char </span><span>**</span><span style=color:#e06c75;>argv</span><span>) {
+</span><span>    ::testing::</span><span style=color:#e06c75;>InitGoogleTest</span><span>(&argc, argv);
+</span><span>    </span><span style=color:#c678dd;>return </span><span style=color:#e06c75;>RUN_ALL_TESTS</span><span>();
+</span><span>}
+</span><span>
+</span><span style=color:#c678dd;>const char </span><span>*actualValTrue  = </span><span style=color:#98c379;>"hello gtest"</span><span>;
+</span><span style=color:#c678dd;>const char </span><span>*expectVal      = </span><span style=color:#98c379;>"hello gtest"</span><span>;
+</span><span>
+</span><span style=color:#e06c75;>TEST</span><span>(StrCompare, CStrEqual) {
+</span><span>    </span><span style=color:#e06c75;>EXPECT_STREQ</span><span>(expectVal, actualValTrue);
+</span><span>}
+</span></code></pre><h2 id=integrate-gtest-in-cmake>Integrate GTest in CMake</h2><p>I wanted a solution to work together with CMake. When I run <code>make test</code> it should run the GTest tests and report the results. Also, I wanted the tests to be ignored if GTest is not available on a machine. I came up with this CMakeLists.txt.<pre class=language-cmake data-lang=cmake style=background-color:#282c34;color:#abb2bf;><code class=language-cmake data-lang=cmake><span style=color:#56b6c2;>cmake_minimum_required</span><span>(</span><span style=color:#e06c75;>VERSION </span><span>3.9)
+</span><span style=color:#56b6c2;>project</span><span>(test_with_gtest)
+</span><span style=color:#56b6c2;>add_library</span><span>(test_with_gtest </span><span style=color:#e06c75;>SHARED </span><span>code_to_be_tested.cpp)
+</span><span style=color:#56b6c2;>find_package</span><span>(GTest)
+</span><span style=color:#c678dd;>if</span><span>(${</span><span style=color:#e06c75;>GTEST_FOUND</span><span>})
+</span><span>    </span><span style=color:#56b6c2;>message</span><span>(</span><span style=color:#98c379;>"GTest found, enabling testing"</span><span>)
+</span><span>    </span><span style=color:#56b6c2;>enable_testing</span><span>()
+</span><span>    </span><span style=color:#56b6c2;>add_subdirectory</span><span>(test)
+</span><span style=color:#c678dd;>endif</span><span>(${</span><span style=color:#e06c75;>GTEST_FOUND</span><span>})
+</span></code></pre><p>This will build a shared library with name <code>test_with_gtest</code> based on the source file <code>code_to_be_tested.cpp</code>. If Google Test is installed/found, additionally, the <code>test</code> directory is added to the project and testing is enabled. The <code>CMakeLists.txt</code> of the <code>test</code> folder looks like this.<pre class=language-cmake data-lang=cmake style=background-color:#282c34;color:#abb2bf;><code class=language-cmake data-lang=cmake><span style=color:#c678dd;>include</span><span>(GoogleTest)
+</span><span style=color:#56b6c2;>add_executable</span><span>(google_tests test_cases.cpp)
+</span><span style=color:#56b6c2;>include_directories</span><span>(${</span><span style=color:#e06c75;>CMAKE_BINARY_DIR</span><span>} ${</span><span style=color:#e06c75;>gtest_SOURCE_DIR</span><span>}/include ${</span><span style=color:#e06c75;>gtest_SOURCE_DIR</span><span>})
+</span><span style=color:#56b6c2;>target_link_libraries</span><span>(google_tests gtest gtest_main test_with_gtest)
+</span><span style=color:#e06c75;>gtest_add_tests</span><span>(</span><span style=color:#e06c75;>TARGET </span><span>google_tests </span><span style=color:#e06c75;>AUTO</span><span>)
+</span></code></pre><p>This creates a new executable target <code>google_tests</code> from source file <code>test_cases.cpp</code> (see first code section). This code links against the library which contains the code to be tested.<p>Now, if Google Test is found, I can compile my project and run tests like this.<pre class=language-bash data-lang=bash style=background-color:#282c34;color:#abb2bf;><code class=language-bash data-lang=bash><span style=color:#e06c75;>$</span><span> cmake ..
+</span><span style=color:#e06c75;>$</span><span> make</span><span style=color:#e06c75;> -j4
+</span><span style=color:#e06c75;>$</span><span> make test
+</span></code></pre><p>However, this is just a CMake summary of the tests. If something goes wrong, it is nice to have a more verbose output by directly running the executable performing the tests.<pre class=language-bash data-lang=bash style=background-color:#282c34;color:#abb2bf;><code class=language-bash data-lang=bash><span style=color:#e06c75;>$</span><span> ./test/google_tests
+</span></code></pre><h2 id=test-fixtures>Test Fixtures</h2><p>For more extensive testing, it is preferrable to use reproducable sets of input data. This is where fixtures come in handy. A fixture is a class providing logic to prepare (<code>SetUp()</code>) and clean up (<code>TearDown()</code>) tests. This logic gets called before each test and enables multiple tests on the same input state. An example can be<pre class=language-c++ data-lang=c++ style=background-color:#282c34;color:#abb2bf;><code class=language-c++ data-lang=c++><span style=color:#c678dd;>#include </span><span style=color:#98c379;>&LTgtest/gtest.h>
+</span><span style=color:#c678dd;>#include </span><span style=color:#98c379;>"../code_to_be_tested.h"
+</span><span>
+</span><span style=color:#c678dd;>int</span><span> factor;
+</span><span>
+</span><span style=color:#c678dd;>class </span><span style=color:#e5c07b;>rangeAllocatorTests</span><span>: </span><span style=color:#c678dd;>public </span><span style=color:#98c379;>::testing::Test </span><span>{
+</span><span>  </span><span style=color:#c678dd;>protected</span><span>:
+</span><span>    </span><span style=color:#c678dd;>void </span><span style=color:#61afef;>SetUp</span><span>() {
+</span><span>        factor = </span><span style=color:#d19a66;>7</span><span>;
+</span><span>    }
+</span><span>
+</span><span>    </span><span style=color:#c678dd;>void </span><span style=color:#61afef;>TearDown</span><span>() {
+</span><span>    }
+</span><span>};
+</span><span>
+</span><span style=color:#c678dd;>int </span><span style=color:#61afef;>main</span><span>(</span><span style=color:#c678dd;>int </span><span style=color:#e06c75;>argc</span><span>, </span><span style=color:#c678dd;>char </span><span>**</span><span style=color:#e06c75;>argv</span><span>) {
+</span><span>  ::testing::</span><span style=color:#e06c75;>InitGoogleTest</span><span>(&argc, argv);
+</span><span>  </span><span style=color:#c678dd;>return </span><span style=color:#e06c75;>RUN_ALL_TESTS</span><span>();
+</span><span>}
+</span><span>
+</span><span style=color:#e06c75;>TEST_F</span><span>(rangeAllocatorTests, testAddition) {
+</span><span>  </span><span style=color:#c678dd;>int</span><span> result = </span><span style=color:#d19a66;>4 </span><span>* factor;
+</span><span>  </span><span style=color:#e06c75;>EXPECT_EQ</span><span>(result, </span><span style=color:#d19a66;>28</span><span>);
+</span><span>}
+</span></code></pre><p>With this code, <code>factor</code> will always be set to <code>7</code> before the actual test happens. Of course, this is a very simple example and in most cases you want to have a more complex <code>SetUp()</code> routine.</section></article></main></div><hr><center><small>Copyright © 2025 Sebastian Müller. All rights reserved.</small></center></div><div class=right-content></div>

@@ -1,0 +1,65 @@
+<!doctype html><html class="dark light" lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=https://sbmueller.github.io/ name=base><title> What I Learned: Autogenerating a change log </title><meta content="What I Learned: Autogenerating a change log" property=og:title><link href=https://sbmueller.github.io/icon/favicon.png rel=icon type=image/png><link href=https://sbmueller.github.io/fonts.css rel=stylesheet><script async id=MathJax-script src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link href=https://sbmueller.github.io/theme/light.css rel=stylesheet><link href=https://sbmueller.github.io/theme/dark.css id=darkModeStyle rel=stylesheet><script src=https://sbmueller.github.io/js/themetoggle.js></script><script>setTheme(getSavedTheme());</script><link href=https://sbmueller.github.io/main.css media=screen rel=stylesheet><body><div class=left-content></div><div class=content><style>.avatar {
+  vertical-align: middle;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+#wrapper {
+    width: 100%;
+    clear: both;
+    text-align: center;
+}</style><nav><div class=left-nav><a href=https://sbmueller.github.io/>sbmueller</a><div class=socials><a class=social href=https://github.com/sbmueller/ rel=me> <img alt=github src=https://sbmueller.github.io/icons/social/github.svg> </a><a class=social href=https://www.linkedin.com/in/sbmueller/ rel=me> <img alt=linkedin src=https://sbmueller.github.io/icons/social/linkedin.svg> </a></div></div><div class=right-nav><a style="margin-right: 0.5em" href=https://sbmueller.github.io/about>/about</a><a onclick="toggleTheme(); event.preventDefault();" href=# id=dark-mode-toggle> <img style="filter: invert(1)" alt=Light id=sun-icon src=https://sbmueller.github.io/icons/sun.svg> <img alt=Dark id=moon-icon src=https://sbmueller.github.io/icons/moon.svg> </a><script>updateItemToggleTheme()</script></div></nav><div id=wrapper><a href=https://sbmueller.github.io/> <img src="https://avatars.githubusercontent.com/u/7465688?v=4" class=avatar> </a></div><div data-selector="main article p" class=visible-element-observer-root><main><article><div class=title><div class=page-header>What I Learned: Autogenerating a change log</div><div class=meta>Posted on <time>2022-08-20</time></div></div><section class=body><p>Changelogs are common when developing software to inform stakeholders about the changes and improvements a project is experiencing. In some domains, such a documentation is even mandatory. See for example the <a href=https://github.com/getzola/zola/blob/master/CHANGELOG.md>Zola Changelog Page</a> on GitHub.<p>One option is, of course, to write this changelog by hand. But, if a version control system like Git is used, changes <em>are already</em> documented there. So why duplicate the work? This is where automatic changelog generators like <a href=https://github.com/orhun/git-cliff>git-cliff</a> come in. The tool is capable of reading the git history, grouping the commits in a configurable way, and creating a changelog automatically. This has two main advantages:<ul><li>Manual work for writing the changelog is eliminated<li>Knowing commit messages will be part of the changelog, commit discipline among developers might be improved</ul><h2 id=example>Example</h2><p>git-cliff requires a configuration file named <code>cliff.toml</code> either in the project directory or in a global configuration folder (see docs for details) to tell the tool how a document shall be created based on a commit history. The most straightforward way is to just print every commit message one after another. But git-cliff is capable to interpret commit messages to some extend, allowing for a more sophisticated changelog.<p>An example config might look like this (see git-cliff docs for details):<pre class=language-toml data-lang=toml style=background-color:#282c34;color:#abb2bf;><code class=language-toml data-lang=toml><span>[changelog]
+</span><span style=font-style:italic;color:#5c6370;># changelog header
+</span><span style=color:#e06c75;>header </span><span>= </span><span style=color:#98c379;>"""
+</span><span style=color:#98c379;># Changelog</span><span style=color:#56b6c2;>\n
+</span><span style=color:#98c379;>All notable changes to this project will be documented in this file.</span><span style=color:#56b6c2;>\n
+</span><span style=color:#98c379;>"""
+</span><span style=font-style:italic;color:#5c6370;># template for the changelog body
+</span><span style=font-style:italic;color:#5c6370;># https://tera.netlify.app/docs/#introduction
+</span><span style=color:#e06c75;>body </span><span>= </span><span style=color:#98c379;>"""
+</span><span style=color:#98c379;>{% if version %}\
+</span><span style=color:#98c379;>    ## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
+</span><span style=color:#98c379;>{% else %}\
+</span><span style=color:#98c379;>    ## [unreleased]
+</span><span style=color:#98c379;>{% endif %}\
+</span><span style=color:#98c379;>{% for group, commits in commits | group_by(attribute="group") %}
+</span><span style=color:#98c379;>    ### {{ group | upper_first }}
+</span><span style=color:#98c379;>    {% for commit in commits %}
+</span><span style=color:#98c379;>        - {% if commit.breaking %}[**breaking**] {% endif %}{{ commit.message | upper_first }}\
+</span><span style=color:#98c379;>    {% endfor %}
+</span><span style=color:#98c379;>{% endfor %}</span><span style=color:#56b6c2;>\n
+</span><span style=color:#98c379;>"""
+</span><span style=font-style:italic;color:#5c6370;># remove the leading and trailing whitespace from the template
+</span><span style=color:#e06c75;>trim </span><span>= </span><span style=color:#d19a66;>true
+</span><span style=font-style:italic;color:#5c6370;># changelog footer
+</span><span style=color:#e06c75;>footer </span><span>= </span><span style=color:#98c379;>"""
+</span><span style=color:#98c379;>&LT!-- generated by git-cliff -->
+</span><span style=color:#98c379;>"""
+</span><span>
+</span><span>[git]
+</span><span style=font-style:italic;color:#5c6370;># parse the commits based on https://www.conventionalcommits.org
+</span><span style=color:#e06c75;>conventional_commits </span><span>= </span><span style=color:#d19a66;>true
+</span><span style=font-style:italic;color:#5c6370;># filter out the commits that are not conventional
+</span><span style=color:#e06c75;>filter_unconventional </span><span>= </span><span style=color:#d19a66;>false
+</span><span style=font-style:italic;color:#5c6370;># regex for parsing and grouping commits
+</span><span style=color:#e06c75;>commit_parsers </span><span>= [
+</span><span>    { </span><span style=color:#e06c75;>message </span><span>= </span><span style=color:#98c379;>"^feat"</span><span>, </span><span style=color:#e06c75;>group </span><span>= </span><span style=color:#98c379;>"Features"</span><span>},
+</span><span>    { </span><span style=color:#e06c75;>message </span><span>= </span><span style=color:#98c379;>"^Merge"</span><span>, </span><span style=color:#e06c75;>skip </span><span>= </span><span style=color:#d19a66;>true</span><span>},
+</span><span>]
+</span><span style=font-style:italic;color:#5c6370;># filter out the commits that are not matched by commit parsers
+</span><span style=color:#e06c75;>filter_commits </span><span>= </span><span style=color:#d19a66;>false
+</span><span style=font-style:italic;color:#5c6370;># glob pattern for matching git tags
+</span><span style=color:#e06c75;>tag_pattern </span><span>= </span><span style=color:#98c379;>"*"
+</span></code></pre><p>To break it down, the config allows for a header, a footer, as well as a templated part in between (using the <a href=https://github.com/Keats/tera>Tera</a> templating engine) that determines how each commit is represented. Here, tags are interpreted as releases and commits are broken down into each tag, allowing to associate changes with certain versions.<p>If the <code>conventional_commits</code> flag is set to false, git-cliff will not interpret the commit messages in any way, but use the regexes defined in <code>commit_parsers</code> to group commits. If the flag is true however, commits are interpreted according to the <a href=https://www.conventionalcommits.org/en/v1.0.0/>conventional commit specification</a>. This means that Strings at the beginning of a message before a colon will be used to group commits (if not overwritten by <code>commit_parsers</code>). Eventually, this allows to list commits of one group (e.g. bugfixes) together in the changelog.<p>With <code>filter_unconventional</code> it is possible to skip all commits that don't follow the conventional commit specification. Also, the same is true for <code>filter_commits</code> if they don't match to any of the regexes in the <code>commit_parsers</code>. Furthermore, specific commits matching a regex can be skipped in <code>commit_parsers</code>, as done above with all commits starting with the word "Merge".<p>If developers have a certain discipline in writing commits, like<pre style=background-color:#282c34;color:#abb2bf;><code><span>feat: Add green button
+</span><span>
+</span><span>Add green button on start page, allowing users to launch the app
+</span></code></pre><p>then it is super easy to auto-generate a changelog out of a project using git-cliff.<h2 id=example-from-git-cliff-readme>Example (from git-cliff readme)</h2><p>A commit history like this<pre style=background-color:#282c34;color:#abb2bf;><code><span>* df6aef4 (HEAD -> master) feat(cache): use cache while fetching pages
+</span><span>* a9d4050 feat(config): support multiple file formats
+</span><span>* 06412ac (tag: v1.0.1) chore(release): add release script
+</span><span>* e4fd3cf refactor(parser): expose string functions
+</span><span>* ad27b43 (tag: v1.0.0) docs(example)!: add tested usage example
+</span><span>* 9add0d4 fix(args): rename help argument due to conflict
+</span><span>* a140cef feat(parser): add ability to parse arrays
+</span><span>* 81fbc63 docs(project): add README.md
+</span><span>* a78bc36 Initial commit
+</span></code></pre><p>Can generate a changelog that looks like this<h1 id=changelog>Changelog</h1><p>All notable changes to this project will be documented in this file.<h2 id=unreleased>[unreleased]</h2><h3 id=features>Features</h3><ul><li>Support multiple file formats<li>Use cache while fetching pages</ul><h2 id=1-0-1-2021-07-18>[1.0.1] - 2021-07-18</h2><h3 id=miscellaneous-tasks>Miscellaneous Tasks</h3><ul><li>Add release script</ul><h3 id=refactor>Refactor</h3><ul><li>Expose string functions</ul><h2 id=1-0-0-2021-07-18>[1.0.0] - 2021-07-18</h2><h3 id=bug-fixes>Bug Fixes</h3><ul><li>Rename help argument due to conflict</ul><h3 id=documentation>Documentation</h3><ul><li>Add README.md<li>Add tested usage example</ul><h3 id=features-1>Features</h3><ul><li>Add ability to parse arrays</ul></section></article></main></div><hr><center><small>Copyright © 2025 Sebastian Müller. All rights reserved.</small></center></div><div class=right-content></div>
