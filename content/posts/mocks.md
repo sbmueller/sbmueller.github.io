@@ -9,12 +9,12 @@ comment = false
 Testing is important. I think every software developer would agree on that. But
 what ways are there to improve software testing? What if a system is too
 complex to be simply unit tested with pre-determined inputs and checking its
-outputs? What, if the outputs only take place on a serial bus or with an HTTP
+outputs? What if the outputs only take place on a serial bus or with an HTTP
 request?
 
 > Well, we don't have any way to test this, then.
 
-I've heard before. But this is where mocks come in to play!
+I've heard that before. But this is where mocks come in to play!
 
 Mocks are objects that are doubles of objects used within a business logic,
 providing the same interface and looking identical from the outside. But
@@ -181,8 +181,9 @@ We can make the following observations:
 - The lifetime of the `ISerial` implementation needs to be managed _outside_
   the `UnitUnderTest` class
 - The usage of `UnitUnderTest` becomes cumbersome; developers usually would
-  expect to construct the class without arguments and have to think about the
-  dependency injection due to mocking even outside of test scenarios
+  expect to construct the class without arguments, but with this approach they
+  have to think about the dependency injection due to mocking even outside of
+  test scenarios
 - Dynamic polymorphism has an impact on runtime
 
 Overall, that doesn't look too great. Let's try a better approach next,
@@ -227,17 +228,17 @@ private:
 };
 ```
 
-A class template is a instruction how to instantiate concrete class definitions
-at compile time. This allows us to let the compiler generate in fact two
-classes for us: One with the mocked serial object, and one with the actual one
-for usage in the business logic.
+A class template is an instruction outlining how to instantiate concrete class
+definitions at compile time. This allows us to let the compiler generate in fact
+two classes for us: One with the mocked serial object, and one with the actual
+one for usage in the business logic.
 
 Without an interface, how can we make sure that the mock object implements the
 same interface as the original object? I would argue, since we use both objects
 the same way in `UnitUnderTest`, we enforce that they can be treated the same
 way at compile time. If we would miss a method in the mock class that we
 actually use in `UnitUnderTest`, the compilation would fail. Basically, the
-business logic becomes the specification which interface must be implemented.
+business logic becomes the specification of which interface must be implemented.
 Also, in C++20 or later,
 [concepts](https://en.cppreference.com/w/cpp/language/constraints.html) can be
 used to pose restrictions on template arguments, but that's out of scope for
